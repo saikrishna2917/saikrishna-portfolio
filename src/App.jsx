@@ -220,19 +220,16 @@ function App() {
       {/* Hero Section */}
       <section className="hero" id="home">
         <div className="hero-content">
-          <div className="badge badge-green mb-4 animate-fade-up">
+          {/* <div className="badge badge-green mb-4 animate-fade-up">
             <span style={{ marginRight: "6px", fontSize: "10px" }}>●</span>{" "}
             AVAILABLE FOR ARCHITECTURE CONSULTING
-          </div>
+          </div> */}
           <h1 className="animate-fade-up delay-1">
             Sai Krishna Mateti |{" "}
             <span className="text-cyan">Backend Engineer</span>
           </h1>
           <p className="animate-fade-up delay-2">
-            Architecting high-throughput microservices and robust cloud
-            infrastructures. I specialize in turning complex system requirements
-            into scalable, maintainable codebases using Kernel-level precision
-            and Craft-driven implementation.
+            Backend Engineer with <strong style={{ color: "var(--accent-cyan)" }}>4.7 years</strong> of experience designing scalable RESTful APIs and microservices in the <strong style={{ color: "var(--accent-cyan)" }}>healthcare domain</strong> using Node.js, Express.js, MongoDB, Redis &amp; Docker. Strong expertise in API security (JWT, OAuth2), cloud integrations, performance optimization, and event-driven architectures — with a proven track record in OCR, NLP, payments, scheduling, and notifications.
           </p>
           <div className="flex gap-4 animate-fade-up delay-3">
             <a
@@ -335,121 +332,89 @@ function App() {
 
       {/* Features & Tech Stack */}
       <section className="features-grid">
-        <div className="card feature-card reveal-scale delay-1">
-          <Zap className="feature-icon" size={24} />
+
+        {/* API Optimization */}
+        <div className="feature-card reveal-scale delay-1">
+          <div className="feature-icon-wrap">
+            <Zap size={20} color="var(--accent-cyan)" />
+          </div>
           <h3 className="feature-title">API Optimization</h3>
           <p className="feature-desc">
-            Reduced backend latency across legacy microservices by implementing
-            advanced caching strategies.
+            Improved average API response time using Redis caching, query optimization,
+            and compound database indexing.
           </p>
           <div>
-            <div className="feature-stat">50%</div>
+            <div className="feature-stat">~50%</div>
             <div className="feature-stat-label">FASTER RESPONSE TIMES</div>
           </div>
         </div>
 
-        <div className="card feature-card tech-stack-card reveal-scale delay-2">
+        {/* Core Tech Stack — spans 2 cols */}
+        <div className="feature-card tech-stack-card reveal-scale delay-2">
+          <div className="feature-icon-wrap" style={{ background: "rgba(0,229,255,0.12)", borderColor: "rgba(0,229,255,0.35)" }}>
+            <Server size={20} color="var(--accent-cyan)" />
+          </div>
           <h3 className="feature-title">Core Tech Stack</h3>
           <p className="feature-desc">
-            Industrial-grade tools utilized for building enterprise systems.
+            Industrial-grade technologies powering cloud-native healthcare microservices,
+            secure multi-tenant portals, and real-time processing.
           </p>
           <div className="tech-tags">
-            <span className="tech-tag tech-nodejs">
-              <Server size={14} color="#68a063" /> Node.js
-            </span>
-            <span className="tech-tag tech-mongodb">
-              <Database size={14} color="#47A248" /> MongoDB
-            </span>
-            <span className="tech-tag tech-redis">
-              <Box size={14} color="#DC382D" /> Redis
-            </span>
-            <span className="tech-tag tech-docker">
-              <LayoutTemplate size={14} color="#2496ED" /> Docker
-            </span>
-            <span className="tech-tag tech-cicd">
-              <Workflow size={14} color="#F05032" /> CI/CD
-            </span>
-            <span className="tech-tag tech-azure">
-              <Cloud size={14} color="#0089D6" /> Azure
-            </span>
-            <span className="tech-tag tech-express">
-              <Cpu size={14} color="#18cce0" /> Express JS
-            </span>
-            <span className="tech-tag tech-swagger">
-              <FileJson size={14} color="#85EA2D" /> Swagger
-            </span>
+            <span className="tech-tag tech-nodejs"><Server size={13} color="#68a063" /> Node.js</span>
+            <span className="tech-tag tech-mongodb"><Database size={13} color="#47A248" /> MongoDB</span>
+            <span className="tech-tag tech-redis"><Box size={13} color="#DC382D" /> Redis</span>
+            <span className="tech-tag tech-docker"><LayoutTemplate size={13} color="#2496ED" /> Docker</span>
+            <span className="tech-tag tech-cicd"><Workflow size={13} color="#ab58f6" /> CI/CD</span>
+            <span className="tech-tag tech-azure"><Cloud size={13} color="#0089D6" /> Azure</span>
+            <span className="tech-tag tech-express"><Cpu size={13} color="#18cce0" /> Express JS</span>
+            <span className="tech-tag tech-swagger"><FileJson size={13} color="#85EA2D" /> Swagger</span>
           </div>
-          {/* Decorative faint icon in background */}
-          <div
-            style={{
-              position: "absolute",
-              right: "-20px",
-              bottom: "-20px",
-              opacity: 0.05,
-              transform: "rotate(-15deg)",
-            }}
-          >
-            <Server size={180} />
+          {/* Decorative background icon */}
+          <div style={{ position: "absolute", right: "-20px", bottom: "-20px", opacity: 0.04, transform: "rotate(-15deg)", pointerEvents: "none" }}>
+            <Server size={160} />
           </div>
         </div>
 
-        <div className="card feature-card reveal-scale delay-3">
-          <ShieldCheck className="feature-icon" size={24} />
-          <h3 className="feature-title">Data Integrity</h3>
+        {/* Environment Parity */}
+        <div className="feature-card reveal-scale delay-3">
+          <div className="feature-icon-wrap" style={{ background: "rgba(63,185,80,0.08)", borderColor: "rgba(63,185,80,0.25)" }}>
+            <ShieldCheck size={20} color="var(--accent-green)" />
+          </div>
+          <h3 className="feature-title">Environment Parity</h3>
           <p className="feature-desc">
-            Engineered a zero-data-loss migration pipeline for 2TB+ of
-            production databases.
+            Standardized deployment workflows by containerizing microservices with Docker,
+            eliminating environment-related issues.
           </p>
           <div>
-            <div
-              className="feature-stat text-cyan"
-              style={{ color: "var(--text-primary)" }}
-            >
-              100%
-            </div>
-            <div className="feature-stat-label">UPTIME DURING MIGRATION</div>
+            <div className="feature-stat" style={{ background: "linear-gradient(135deg, #e6edf3, #00e5ff)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>99.9%</div>
+            <div className="feature-stat-label">PARITY ACROSS QA, STAGE &amp; PROD</div>
           </div>
         </div>
 
-        <div className="card feature-card reveal-scale delay-4">
-          <h3
-            className="feature-title"
-            style={{
-              fontSize: "1rem",
-              display: "flex",
-              alignItems: "center",
-              gap: "0.5rem",
-              color: "var(--accent-cyan)",
-            }}
-          >
-            <TerminalSquare size={16} /> Technical Philosophy
-          </h3>
-          <p className="feature-desc" style={{ marginTop: "0.5rem" }}>
-            Writing code is 20% of the job; designing systems that can fail
-            gracefully and recover autonomously is the other 80%. I prioritize
-            observability and decoupled logic.
+        {/* Security & Access Boundaries */}
+        <div className="feature-card reveal-scale delay-4">
+          <div className="feature-icon-wrap" style={{ background: "rgba(0,229,255,0.06)", borderColor: "rgba(0,229,255,0.18)" }}>
+            <TerminalSquare size={20} color="var(--accent-cyan)" />
+          </div>
+          <h3 className="feature-title" style={{ color: "var(--accent-cyan)" }}>Security &amp; Boundaries</h3>
+          <p className="feature-desc">
+            Implemented JWT/OAuth2 authentication, role-based access control (RBAC),
+            and data boundaries to secure patient and doctor medical records.
           </p>
         </div>
 
-        <div className="card feature-card reveal-scale delay-5">
-          <h3
-            className="feature-title"
-            style={{
-              fontSize: "1rem",
-              display: "flex",
-              alignItems: "center",
-              gap: "0.5rem",
-              color: "#ffbd2e",
-            }}
-          >
-            <Award size={16} /> Experience Trail
-          </h3>
-          <p className="feature-desc" style={{ marginTop: "0.5rem" }}>
-            Currently lead backend efforts for enterprise-scale Fintech
-            solutions, focusing on transactional consistency and low-latency
-            auditing systems.
+        {/* Experience Trail */}
+        <div className="feature-card reveal-scale delay-5">
+          <div className="feature-icon-wrap" style={{ background: "rgba(255,189,46,0.08)", borderColor: "rgba(255,189,46,0.25)" }}>
+            <Award size={20} color="#ffbd2e" />
+          </div>
+          <h3 className="feature-title" style={{ color: "#ffbd2e" }}>Experience Trail</h3>
+          <p className="feature-desc">
+            Software Engineer L3 at Archents IT Pvt Ltd. Focused on designing robust, high-performance APIs,
+            integrations (OCR, NLP, payments), and event-driven healthcare workflows.
           </p>
         </div>
+
       </section>
 
       {/* Professional Experience Section */}
@@ -469,94 +434,76 @@ function App() {
               <div className="exp-card-header">
                 <div>
                   <div className="exp-date">2021 — PRESENT</div>
-                  <h3 className="exp-role">Software Engineer L3</h3>
-                  <div className="exp-company">Archents IT</div>
+                  <h3 className="exp-role">Software Engineer</h3>
+                  <div className="exp-company">Archents IT Pvt Ltd</div>
                 </div>
               </div>
 
               <div className="exp-grid">
                 <div className="exp-grid-item">
                   <div className="exp-grid-title">
-                    <Target size={14} color="var(--accent-cyan)" /> RESTful APIs
+                    <Target size={14} color="var(--accent-cyan)" /> Scalable RESTful APIs
                   </div>
                   <p className="exp-grid-desc">
-                    Engineered high-throughput endpoints using Node.js/Express
-                    with schema validation and error-handling middleware.
+                    Designed and implemented high-performance endpoints using Node.js and Express.js for a cloud-native healthcare platform serving patients, doctors, pharmacies, and labs.
                   </p>
                 </div>
 
                 <div className="exp-grid-item">
                   <div className="exp-grid-title">
-                    <Network size={14} color="var(--accent-cyan)" />{" "}
-                    Microservices
+                    <Network size={14} color="var(--accent-cyan)" /> Secure Microservices
                   </div>
                   <p className="exp-grid-desc">
-                    Decoupled monolithic logic into event-driven services,
-                    reducing deployment cycles by 40%.
+                    Developed microservices and modular backend components with secure inter-service communication and high-throughput reliability.
                   </p>
                 </div>
 
                 <div className="exp-grid-item">
                   <div className="exp-grid-title">
-                    <Database size={14} color="var(--accent-cyan)" /> MongoDB
-                    Aggregation
+                    <Database size={14} color="var(--accent-cyan)" /> MongoDB Pipelines
                   </div>
                   <p className="exp-grid-desc">
-                    Optimized complex data lookups using multi-stage pipelines
-                    and compound indexing for real-time reporting.
+                    Modeled high-performance schemas, created compound indexes, and built multi-stage aggregation pipelines to support transactional workflows.
                   </p>
                 </div>
 
                 <div className="exp-grid-item">
                   <div className="exp-grid-title">
-                    <Lock size={14} color="var(--accent-cyan)" /> JWT / OAuth2
+                    <Lock size={14} color="var(--accent-cyan)" /> Identity &amp; Auth
                   </div>
                   <p className="exp-grid-desc">
-                    Implemented stateless authentication and RBAC, securing
-                    enterprise-grade resources across cloud environments.
+                    Implemented stateless JWT/OAuth2 authentication, role-based access control (RBAC), and API versioning to secure multi-tenant healthcare applications.
                   </p>
                 </div>
 
                 {/* Full-width inner block */}
                 <div
-                  className="exp-grid-item"
+                  className="exp-grid-item full-width-exp-card"
                   style={{
-                    gridColumn: "span 1 / span 2",
-                    padding: "1rem",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "0.75rem",
-                    backgroundColor: "var(--bg-darker)",
+                    gridColumn: "span 2",
                   }}
                 >
-                  <div
-                    className="exp-grid-title"
-                    style={{
-                      margin: 0,
-                      fontSize: "0.75rem",
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    <Cloud size={12} /> Azure Cloud Infrastructure
+                  <div className="exp-grid-title">
+                    <Cloud size={14} color="var(--accent-cyan)" /> Cloud &amp; Asynchronous Workflows
                   </div>
+                  <p className="exp-grid-desc" style={{ marginBottom: "0.75rem" }}>
+                    Built event-driven workflows using Azure Service Bus for asynchronous processing, notification dispatch, and background jobs. Integrated Azure Blob Storage for secure medical document storage and Azure NLP for entity extraction.
+                  </p>
                   <div className="flex gap-2" style={{ flexWrap: "wrap" }}>
-                    <span
-                      className="badge badge-outline"
-                      style={{ backgroundColor: "#111827" }}
-                    >
-                      Blob Storage Integration
+                    <span className="badge badge-outline">
+                      Azure Service Bus
                     </span>
-                    <span
-                      className="badge badge-outline"
-                      style={{ backgroundColor: "#111827" }}
-                    >
-                      NLP Cognitive Services
+                    <span className="badge badge-outline">
+                      Blob Storage
                     </span>
-                    <span
-                      className="badge badge-outline"
-                      style={{ backgroundColor: "#111827" }}
-                    >
-                      App Service Orchestration
+                    <span className="badge badge-outline">
+                      Azure Cognitive NLP
+                    </span>
+                    <span className="badge badge-outline">
+                      Docker Containerization
+                    </span>
+                    <span className="badge badge-outline">
+                      GitHub Actions CI/CD
                     </span>
                   </div>
                 </div>
@@ -564,33 +511,25 @@ function App() {
 
               <div className="exp-achievements">
                 <h4 className="achievements-title">
-                  <Trophy size={16} /> Key Achievements
+                  <Trophy size={18} color="var(--accent-green)" /> Key Achievements
                 </h4>
                 <div className="achievement-list">
                   <div className="achievement-item">
-                    <div className="achievement-badge">99%</div>
+                    <div className="achievement-badge">~50%</div>
                     <div className="achievement-text">
-                      Standardized containerization workflows using{" "}
-                      <strong>Docker</strong>, achieving 99.9% environment
-                      parity across Development/Staging/Production.
+                      Improved average API response time by <strong>~50%</strong> using Redis caching, query optimization, and compound database indexing.
                     </div>
                   </div>
                   <div className="achievement-item">
-                    <div className="achievement-badge">35%</div>
+                    <div className="achievement-badge">Docker</div>
                     <div className="achievement-text">
-                      Refactored legacy data migration scripts, improving
-                      processing speed by <strong>35%</strong> for
-                      multi-terabyte datasets.
+                      Standardized deployments by <strong>Dockerizing microservices</strong>, achieving environment consistency and eliminating deployment issues.
                     </div>
                   </div>
                   <div className="achievement-item">
-                    <div className="achievement-badge">
-                      <Box size={14} />
-                    </div>
+                    <div className="achievement-badge">99.9%</div>
                     <div className="achievement-text">
-                      Led the migration of on-prem NLP processing to{" "}
-                      <strong>Azure Cognitive Services</strong>, enhancing
-                      entity extraction accuracy.
+                      Implemented automated backup, logging, and monitoring pipelines, enhancing <strong>system reliability</strong> and incident response.
                     </div>
                   </div>
                 </div>
@@ -607,82 +546,31 @@ function App() {
         style={{ marginBottom: "6rem" }}
       >
         {/* Case Study Hero */}
-        <div
-          className="case-study-hero"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1.2fr 0.8fr",
-            gap: "3rem",
-            marginBottom: "2rem",
-            alignItems: "center",
-          }}
-        >
-          <div className="hero-left">
-            <div className="section-label" style={{ marginBottom: "0.75rem" }}>
-              SYSTEM ARCHITECTURE CASE STUDY
+        <div className="case-study-hero">
+          <div className="case-study-left">
+            <div className="section-label case-study-label">
+              FEATURED BACKEND CASE STUDY
             </div>
-            <h1
-              className="case-study-title"
-              style={{
-                fontSize: "3rem",
-                fontWeight: "800",
-                lineHeight: "1.1",
-                marginBottom: "1.5rem",
-                color: "#fff",
-              }}
-            >
+            <h1 className="case-study-title">
               Ciana Healthcare Platform
             </h1>
-            <p
-              className="case-study-desc"
-              style={{
-                fontSize: "1.125rem",
-                lineHeight: "1.6",
-                color: "var(--text-secondary)",
-                marginBottom: "2rem",
-              }}
-            >
-              A robust, distributed microservices ecosystem designed to
-              modernize patient-doctor interactions, pharmacy logistics, and
-              laboratory workflows through secure, real-time data orchestration.
+            <p className="case-study-desc">
+              Designed and built secure, modular backend microservices for a multi-role healthcare ecosystem. Developed features for patients, doctors, pharmacies, and labs with secure Azure Blob Storage uploads, Face Scan AI vitals monitoring, PhonePe integrations, and end-to-end RBAC and JWT authentication layers.
             </p>
-            <div
-              className="case-study-tags"
-              style={{ display: "flex", gap: "0.75rem" }}
-            >
-              <span
-                className="badge badge-outline"
-                style={{
-                  borderColor: "var(--border-color)",
-                  color: "var(--text-secondary)",
-                }}
-              >
-                Microservices
+            <div className="case-study-tags">
+              <span className="badge badge-outline tag-microservices">
+                Microservices Architecture
               </span>
-              <span
-                className="badge badge-outline text-green"
-                style={{
-                  borderColor: "var(--accent-green-dim)",
-                  backgroundColor: "rgba(63, 185, 80, 0.05)",
-                  color: "var(--accent-green)",
-                }}
-              >
-                HIPAA Compliant
+              <span className="badge badge-outline tag-compliance">
+                HIPAA Compliant Data Boundaries
               </span>
-              <span
-                className="badge badge-outline text-cyan"
-                style={{
-                  borderColor: "var(--accent-cyan-dim)",
-                  backgroundColor: "rgba(0, 229, 255, 0.05)",
-                  color: "var(--accent-cyan)",
-                }}
-              >
-                Event-Driven
+              <span className="badge badge-outline tag-cloud">
+                Azure Cloud Integrations
               </span>
             </div>
           </div>
 
-          <div className="hero-right" style={{ position: "relative" }}>
+          <div className="case-study-right">
             <div className="dashboard-frame">
               <div className="dashboard-visual dashboard-curved">
                 <img
@@ -693,43 +581,12 @@ function App() {
               </div>
 
               {/* Floating Uptime Card */}
-              <div
-                className="uptime-card animate-float"
-                style={{
-                  position: "absolute",
-                  bottom: "20px",
-                  left: "-20px",
-                  backgroundColor: "rgba(13, 17, 23, 0.95)",
-                  backdropFilter: "blur(8px)",
-                  border: "1px solid var(--border-color)",
-                  borderRadius: "8px",
-                  padding: "1rem 1.5rem",
-                  boxShadow: "0 10px 25px rgba(0,255,123,0.15)",
-                  zIndex: 10,
-                }}
-              >
-                <div
-                  className="uptime-value text-green"
-                  style={{
-                    fontSize: "1.75rem",
-                    fontWeight: "800",
-                    color: "var(--accent-green)",
-                    lineHeight: "1.2",
-                  }}
-                >
+              <div className="uptime-card animate-float">
+                <div className="uptime-value text-green">
                   99.9%
                 </div>
-                <div
-                  className="uptime-label"
-                  style={{
-                    fontSize: "0.625rem",
-                    color: "var(--text-secondary)",
-                    fontWeight: "600",
-                    letterSpacing: "0.1em",
-                    marginTop: "2px",
-                  }}
-                >
-                  UPTIME PERFORMANCE
+                <div className="uptime-label">
+                  SYSTEM UPTIME
                 </div>
               </div>
             </div>
@@ -737,353 +594,97 @@ function App() {
         </div>
 
         {/* Platform Modules Header */}
-        <div
-          className="modules-header flex justify-between items-end"
-          style={{
-            marginBottom: "2.5rem",
-            borderBottom: "1px solid var(--border-color)",
-            paddingBottom: "1.5rem",
-          }}
-        >
+        <div className="modules-header">
           <div>
-            <h2
-              className="modules-title"
-              style={{
-                fontSize: "2rem",
-                fontWeight: "700",
-                color: "#fff",
-                marginBottom: "0.5rem",
-              }}
-            >
-              Platform Modules
-            </h2>
-            <p
-              className="modules-subtitle"
-              style={{ color: "var(--text-secondary)" }}
-            >
-              Core service layers architected for high throughput and low
-              latency.
+            <h2 className="modules-title">Service Domain Architecture</h2>
+            <p className="modules-subtitle">
+              Modular microservices powering patient, doctor, pharmacy, and laboratory workflows.
             </p>
           </div>
-          <div
-            className="modules-path font-mono text-cyan"
-            style={{
-              fontSize: "0.8125rem",
-              color: "var(--accent-cyan)",
-              opacity: 0.8,
-            }}
-          ></div>
+          <div className="modules-path font-mono text-cyan"></div>
         </div>
 
         {/* Modules Grid */}
-        <div
-          className="modules-grid"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "2rem",
-            marginBottom: "5rem",
-          }}
-        >
+        <div className="modules-grid">
           {/* Card 1: Patient Services */}
-          <div
-            className="module-card module-card-cyan-p"
-            style={{ position: "relative" }}
-          >
-            <div
-              className="module-card-header"
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                marginBottom: "1.5rem",
-              }}
-            >
-              <div
-                className="module-icon-container"
-                style={{
-                  padding: "0.75rem",
-                  borderRadius: "8px",
-                  backgroundColor: "rgba(0, 229, 255, 0.05)",
-                  border: "1px solid var(--accent-cyan-dim)",
-                }}
-              >
-                <Users
-                  size={20}
-                  className="text-cyan"
-                  style={{ color: "var(--accent-cyan)" }}
-                />
+          <div className="module-card module-card-cyan-p">
+            <div className="module-card-header">
+              <div className="module-icon-container">
+                <Users size={20} className="text-cyan" />
               </div>
-              {/* <div
-                className="module-version font-mono text-xs"
-                style={{ color: "var(--text-secondary)" }}
-              >
-                v2.4.0
-              </div> */}
             </div>
 
             <div className="module-card-body">
-              <h3
-                className="module-name"
-                style={{
-                  fontSize: "1.5rem",
-                  fontWeight: "600",
-                  marginBottom: "0.75rem",
-                  color: "#fff",
-                }}
-              >
-                Patient Services
-              </h3>
-              <p
-                className="module-desc"
-                style={{
-                  fontSize: "0.9375rem",
-                  color: "var(--text-secondary)",
-                  marginBottom: "1.5rem",
-                  lineHeight: "1.5",
-                }}
-              >
-                Omnichannel patient engagement portal prioritizing accessibility
-                and rapid medical intervention.
+              <h3 className="module-name">Patient Services</h3>
+              <p className="module-desc">
+                Core service layer managing registrations, wellness tracking, and secure document uploads.
               </p>
 
-              <ul
-                className="module-bullets"
-                style={{
-                  listStyle: "none",
-                  padding: 0,
-                  margin: "0 0 2rem 0",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "0.75rem",
-                }}
-              >
-                <li
-                  style={{
-                    display: "flex",
-                    gap: "0.75rem",
-                    alignItems: "flex-start",
-                  }}
-                >
-                  <CheckCircle2
-                    size={16}
-                    className="bullet-icon text-green"
-                    style={{
-                      color: "var(--accent-green)",
-                      flexShrink: 0,
-                      marginTop: "2px",
-                    }}
-                  />
-                  <span
-                    style={{
-                      fontSize: "0.875rem",
-                      color: "var(--text-secondary)",
-                    }}
-                  >
-                    Face Scan AI for touchless check-ins and identity
-                    verification.
+              <ul className="module-bullets">
+                <li className="module-bullet-item">
+                  <CheckCircle2 size={16} className="bullet-icon text-green" />
+                  <span className="bullet-text">
+                    Registration, profile management, appointment booking, and wellness logs.
                   </span>
                 </li>
-                <li
-                  style={{
-                    display: "flex",
-                    gap: "0.75rem",
-                    alignItems: "flex-start",
-                  }}
-                >
-                  <CheckCircle2
-                    size={16}
-                    className="bullet-icon text-green"
-                    style={{
-                      color: "var(--accent-green)",
-                      flexShrink: 0,
-                      marginTop: "2px",
-                    }}
-                  />
-                  <span
-                    style={{
-                      fontSize: "0.875rem",
-                      color: "var(--text-secondary)",
-                    }}
-                  >
-                    PhonePe integration for seamless automated billing and
-                    insurance claims.
+                <li className="module-bullet-item">
+                  <CheckCircle2 size={16} className="bullet-icon text-green" />
+                  <span className="bullet-text">
+                    Integrated Face Scan AI module for touchless health vitals monitoring.
                   </span>
                 </li>
-                <li
-                  style={{
-                    display: "flex",
-                    gap: "0.75rem",
-                    alignItems: "flex-start",
-                  }}
-                >
-                  <CheckCircle2
-                    size={16}
-                    className="bullet-icon text-green"
-                    style={{
-                      color: "var(--accent-green)",
-                      flexShrink: 0,
-                      marginTop: "2px",
-                    }}
-                  />
-                  <span
-                    style={{
-                      fontSize: "0.875rem",
-                      color: "var(--text-secondary)",
-                    }}
-                  >
-                    Unified health timeline with multi-hospital history syncing.
+                <li className="module-bullet-item">
+                  <CheckCircle2 size={16} className="bullet-icon text-green" />
+                  <span className="bullet-text">
+                    Secure prescription uploads stored safely in Azure Blob Storage.
+                  </span>
+                </li>
+                <li className="module-bullet-item">
+                  <CheckCircle2 size={16} className="bullet-icon text-green" />
+                  <span className="bullet-text">
+                    PhonePe & RazorPay payment gateway integration for packages and consultation fees.
                   </span>
                 </li>
               </ul>
-
-              {/* <div className="module-terminal" style={{ backgroundColor: '#05080f', border: '1px solid var(--border-color)', borderRadius: '6px', padding: '1rem 1.25rem', boxShadow: 'inset 0 0 10px rgba(0,0,0,0.5)' }}>
-                <div className="terminal-bar flex justify-between items-center mb-2" style={{ borderBottom: '1px solid #161b22', paddingBottom: '0.5rem', marginBottom: '0.5rem' }}>
-                  <span className="flex items-center gap-1 font-mono text-xs" style={{ color: 'var(--accent-cyan)' }}><Lock size={12} style={{ color: 'var(--accent-cyan)' }} /> auth_service.logs</span>
-                </div>
-                <div className="terminal-body font-mono text-xs" style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
-                  <div style={{ color: 'var(--text-secondary)' }}>[INFO] Request: POST /api/v1/patient/checkin</div>
-                  <div style={{ color: 'var(--text-secondary)' }}>[INFO] Identity Verified: biometric_ai_scan</div>
-                  <div style={{ color: 'var(--text-secondary)' }}>[INFO] Payment Gateway: PHONEPE_TXN_8823</div>
-                  <div style={{ color: 'var(--accent-green)' }}>[SUCCESS] EMR link established.</div>
-                </div>
-              </div> */}
             </div>
           </div>
 
           {/* Card 2: Doctor Workflows */}
-          <div
-            className="module-card module-card-green"
-            style={{
-              position: "relative",
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            <div
-              className="module-card-header"
-              style={{ marginBottom: "1.5rem" }}
-            >
-              <div
-                className="module-icon-container"
-                style={{
-                  display: "inline-block",
-                  padding: "0.75rem",
-                  borderRadius: "8px",
-                  backgroundColor: "rgba(63, 185, 80, 0.05)",
-                  border: "1px solid var(--accent-green-dim)",
-                }}
-              >
-                <Activity
-                  size={20}
-                  className="text-green"
-                  style={{ color: "var(--accent-green)" }}
-                />
+          <div className="module-card module-card-green">
+            <div className="module-card-header">
+              <div className="module-icon-container">
+                <Activity size={20} className="text-green" />
               </div>
             </div>
 
-            <div
-              className="module-card-body"
-              style={{ display: "flex", flexDirection: "column", flexGrow: 1 }}
-            >
-              <h3
-                className="module-name"
-                style={{
-                  fontSize: "1.5rem",
-                  fontWeight: "600",
-                  marginBottom: "0.75rem",
-                  color: "#fff",
-                }}
-              >
-                Doctor Workflows
-              </h3>
-              <p
-                className="module-desc"
-                style={{
-                  fontSize: "0.9375rem",
-                  color: "var(--text-secondary)",
-                  marginBottom: "1.5rem",
-                  lineHeight: "1.5",
-                }}
-              >
-                Streamlined clinical environment focused on patient outcomes
-                over administrative overhead.
+            <div className="module-card-body">
+              <h3 className="module-name">Doctor Workflows</h3>
+              <p className="module-desc">
+                Comprehensive digital workspaces for clinical consultations and secure record handling.
               </p>
 
-              <ul
-                className="module-bullets"
-                style={{
-                  listStyle: "none",
-                  padding: 0,
-                  margin: 0,
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "0.75rem",
-                }}
-              >
-                <li
-                  style={{
-                    display: "flex",
-                    gap: "0.75rem",
-                    alignItems: "flex-start",
-                  }}
-                >
-                  <CheckCircle2
-                    size={16}
-                    className="bullet-icon text-green"
-                    style={{
-                      color: "var(--accent-green)",
-                      flexShrink: 0,
-                      marginTop: "2px",
-                    }}
-                  />
-                  <span
-                    style={{
-                      fontSize: "0.875rem",
-                      color: "var(--text-secondary)",
-                    }}
-                  >
-                    One-click EMR generation using NLP transcription.
+              <ul className="module-bullets">
+                <li className="module-bullet-item">
+                  <CheckCircle2 size={16} className="bullet-icon text-green" />
+                  <span className="bullet-text">
+                    End-to-end appointment lifecycle management and video consultations.
                   </span>
                 </li>
-                <li
-                  style={{
-                    display: "flex",
-                    gap: "0.75rem",
-                    alignItems: "flex-start",
-                  }}
-                >
-                  <CheckCircle2
-                    size={16}
-                    className="bullet-icon text-green"
-                    style={{
-                      color: "var(--accent-green)",
-                      flexShrink: 0,
-                      marginTop: "2px",
-                    }}
-                  />
-                  <span
-                    style={{
-                      fontSize: "0.875rem",
-                      color: "var(--text-secondary)",
-                    }}
-                  >
-                    Digital prescriptions with drug interaction alerts.
+                <li className="module-bullet-item">
+                  <CheckCircle2 size={16} className="bullet-icon text-green" />
+                  <span className="bullet-text">
+                    Electronic Medical Record (EMR) generation and digital prescriptions.
+                  </span>
+                </li>
+                <li className="module-bullet-item">
+                  <CheckCircle2 size={16} className="bullet-icon text-green" />
+                  <span className="bullet-text">
+                    Secure data access boundaries based on JWT and role-based access control (RBAC).
                   </span>
                 </li>
               </ul>
 
-              <div
-                className="efficiency-footer"
-                style={{
-                  marginTop: "auto",
-                  paddingTop: "2.5rem",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  borderTop: "1px solid var(--border-color)",
-                }}
-              >
+              <div className="efficiency-footer">
                 <span
                   style={{
                     fontSize: "0.6875rem",
@@ -1092,127 +693,43 @@ function App() {
                     fontFamily: "var(--font-mono)",
                   }}
                 >
-                  EFFICIENCY GAIN
+                  ACCESS CONTROL
                 </span>
                 <span
                   style={{
-                    fontSize: "1.5rem",
+                    fontSize: "1.125rem",
                     fontWeight: "800",
                     color: "var(--accent-green)",
                   }}
                 >
-                  +40%
+                  SECURE RBAC
                 </span>
               </div>
             </div>
           </div>
 
           {/* Card 3: Pharmacy Module */}
-          <div
-            className="module-card module-card-cyan"
-            style={{ position: "relative" }}
-          >
-            <div
-              className="module-card-header"
-              style={{ marginBottom: "1.5rem" }}
-            >
-              <div
-                className="module-icon-container"
-                style={{
-                  display: "inline-block",
-                  padding: "0.75rem",
-                  borderRadius: "8px",
-                  backgroundColor: "rgba(0, 229, 255, 0.05)",
-                  border: "1px solid var(--accent-cyan-dim)",
-                }}
-              >
-                <PlusSquare
-                  size={20}
-                  className="text-cyan"
-                  style={{ color: "var(--accent-cyan)" }}
-                />
+          <div className="module-card module-card-cyan">
+            <div className="module-card-header">
+              <div className="module-icon-container">
+                <PlusSquare size={20} className="text-cyan" />
               </div>
             </div>
 
-            <div
-              className="module-card-body flex-row"
-              style={{
-                display: "flex",
-                gap: "1.5rem",
-                height: "calc(100% - 68px)",
-              }}
-            >
+            <div className="module-card-body flex-row" style={{ display: "flex", gap: "1.5rem", height: "calc(100% - 68px)" }}>
               <div className="module-info-left" style={{ flexGrow: 1 }}>
-                <h3
-                  className="module-name"
-                  style={{
-                    fontSize: "1.5rem",
-                    fontWeight: "600",
-                    marginBottom: "0.75rem",
-                    color: "#fff",
-                  }}
-                >
-                  Pharmacy Module
-                </h3>
-                <ul
-                  className="module-bullets"
-                  style={{
-                    listStyle: "none",
-                    padding: 0,
-                    margin: 0,
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "0.75rem",
-                  }}
-                >
-                  <li
-                    style={{
-                      display: "flex",
-                      gap: "0.75rem",
-                      alignItems: "flex-start",
-                    }}
-                  >
-                    <CheckCircle2
-                      size={16}
-                      className="bullet-icon text-green"
-                      style={{
-                        color: "var(--accent-green)",
-                        flexShrink: 0,
-                        marginTop: "2px",
-                      }}
-                    />
-                    <span
-                      style={{
-                        fontSize: "0.875rem",
-                        color: "var(--text-secondary)",
-                      }}
-                    >
-                      Inventory tracking with low-stock predictive ordering.
+                <h3 className="module-name">Pharmacy Module</h3>
+                <ul className="module-bullets">
+                  <li className="module-bullet-item">
+                    <CheckCircle2 size={16} className="bullet-icon text-green" />
+                    <span className="bullet-text">
+                      Inventory tracking, real-time medicine search, and billing systems.
                     </span>
                   </li>
-                  <li
-                    style={{
-                      display: "flex",
-                      gap: "0.75rem",
-                      alignItems: "flex-start",
-                    }}
-                  >
-                    <CheckCircle2
-                      size={16}
-                      className="bullet-icon text-green"
-                      style={{
-                        color: "var(--accent-green)",
-                        flexShrink: 0,
-                        marginTop: "2px",
-                      }}
-                    />
-                    <span
-                      style={{
-                        fontSize: "0.875rem",
-                        color: "var(--text-secondary)",
-                      }}
-                    >
-                      QR-based dispensing to eliminate medication errors.
+                  <li className="module-bullet-item">
+                    <CheckCircle2 size={16} className="bullet-icon text-green" />
+                    <span className="bullet-text">
+                      Automated low-stock detection and purchase order (PO) generation.
                     </span>
                   </li>
                 </ul>
@@ -1229,7 +746,7 @@ function App() {
                   position: "relative",
                 }}
               >
-                <div className="db-visual" style={{ position: "relative" }}>
+                <div className="db-visual">
                   <Database
                     size={44}
                     style={{
@@ -1243,110 +760,27 @@ function App() {
           </div>
 
           {/* Card 4: Lab Management */}
-          <div
-            className="module-card module-card-orange"
-            style={{ position: "relative" }}
-          >
-            <div
-              className="module-card-header"
-              style={{ marginBottom: "1.5rem" }}
-            >
-              <div
-                className="module-icon-container"
-                style={{
-                  display: "inline-block",
-                  padding: "0.75rem",
-                  borderRadius: "8px",
-                  backgroundColor: "rgba(255, 123, 114, 0.05)",
-                  border: "1px solid var(--accent-orange-dim)",
-                }}
-              >
-                <FlaskConical
-                  size={20}
-                  style={{ color: "var(--accent-orange)" }}
-                />
+          <div className="module-card module-card-orange">
+            <div className="module-card-header">
+              <div className="module-icon-container">
+                <FlaskConical size={20} style={{ color: "var(--accent-orange)" }} />
               </div>
             </div>
 
-            <div
-              className="module-card-body flex-row"
-              style={{
-                display: "flex",
-                gap: "1.5rem",
-                height: "calc(100% - 68px)",
-              }}
-            >
+            <div className="module-card-body flex-row" style={{ display: "flex", gap: "1.5rem", height: "calc(100% - 68px)" }}>
               <div className="module-info-left" style={{ flexGrow: 1 }}>
-                <h3
-                  className="module-name"
-                  style={{
-                    fontSize: "1.5rem",
-                    fontWeight: "600",
-                    marginBottom: "0.75rem",
-                    color: "#fff",
-                  }}
-                >
-                  Lab Management
-                </h3>
-                <ul
-                  className="module-bullets"
-                  style={{
-                    listStyle: "none",
-                    padding: 0,
-                    margin: 0,
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "0.75rem",
-                  }}
-                >
-                  <li
-                    style={{
-                      display: "flex",
-                      gap: "0.75rem",
-                      alignItems: "flex-start",
-                    }}
-                  >
-                    <CheckCircle2
-                      size={16}
-                      className="bullet-icon text-green"
-                      style={{
-                        color: "var(--accent-green)",
-                        flexShrink: 0,
-                        marginTop: "2px",
-                      }}
-                    />
-                    <span
-                      style={{
-                        fontSize: "0.875rem",
-                        color: "var(--text-secondary)",
-                      }}
-                    >
-                      Automated LIS (Lab Information System) integration.
+                <h3 className="module-name">Lab Management</h3>
+                <ul className="module-bullets">
+                  <li className="module-bullet-item">
+                    <CheckCircle2 size={16} className="bullet-icon text-green" />
+                    <span className="bullet-text">
+                      Test scheduling, technician workflows, and real-time status alerts.
                     </span>
                   </li>
-                  <li
-                    style={{
-                      display: "flex",
-                      gap: "0.75rem",
-                      alignItems: "flex-start",
-                    }}
-                  >
-                    <CheckCircle2
-                      size={16}
-                      className="bullet-icon text-green"
-                      style={{
-                        color: "var(--accent-green)",
-                        flexShrink: 0,
-                        marginTop: "2px",
-                      }}
-                    />
-                    <span
-                      style={{
-                        fontSize: "0.875rem",
-                        color: "var(--text-secondary)",
-                      }}
-                    >
-                      DICOM image hosting for imaging centers.
+                  <li className="module-bullet-item">
+                    <CheckCircle2 size={16} className="bullet-icon text-green" />
+                    <span className="bullet-text">
+                      Secure PDF report uploads and signed URL downloads.
                     </span>
                   </li>
                 </ul>
@@ -1363,15 +797,7 @@ function App() {
                   overflow: "hidden",
                 }}
               >
-                <div
-                  className="equalizer"
-                  style={{
-                    display: "flex",
-                    gap: "4px",
-                    alignItems: "flex-end",
-                    height: "40px",
-                  }}
-                >
+                <div className="equalizer">
                   <div className="bar bar-1"></div>
                   <div className="bar bar-2"></div>
                   <div className="bar bar-3"></div>
@@ -1383,145 +809,55 @@ function App() {
         </div>
 
         {/* Integration Architecture */}
-        <div
-          className="integration-architecture"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1.12fr 0.88fr",
-            gap: "4rem",
-            alignItems: "center",
-          }}
-        >
+        <div className="integration-architecture">
           <div className="integration-left">
-            <h2
-              className="integration-title"
-              style={{
-                fontSize: "2.5rem",
-                fontWeight: "800",
-                color: "#fff",
-                marginBottom: "2.5rem",
-              }}
-            >
+            <h2 className="integration-title">
               Integration Architecture
             </h2>
 
-            <div
-              className="integration-step"
-              style={{ display: "flex", gap: "1.5rem", marginBottom: "2rem" }}
-            >
-              <div
-                className="step-num font-mono text-cyan"
-                style={{
-                  fontSize: "1.25rem",
-                  fontWeight: "700",
-                  color: "var(--accent-cyan)",
-                  marginTop: "2px",
-                }}
-              >
-                01
+            <div className="integration-steps">
+              <div className="integration-step">
+                <div className="step-num font-mono text-cyan">01</div>
+                <div className="step-content">
+                  <h4 className="step-title">Face Scan AI Module</h4>
+                  <p className="step-desc">
+                    Integrated Face Scan AI vitals monitoring module for touchless tracking of patient health metrics.
+                  </p>
+                </div>
               </div>
-              <div className="step-content">
-                <h4
-                  className="step-title"
-                  style={{
-                    fontSize: "1.125rem",
-                    fontWeight: "600",
-                    color: "#fff",
-                    marginBottom: "0.5rem",
-                  }}
-                >
-                  Secure Data Pipelines
-                </h4>
-                <p
-                  className="step-desc"
-                  style={{
-                    fontSize: "0.9375rem",
-                    color: "var(--text-secondary)",
-                    lineHeight: "1.5",
-                  }}
-                >
-                  End-to-end encrypted tunnels for sensitive medical records
-                  (EMR) using AES-256 standards.
-                </p>
-              </div>
-            </div>
 
-            <div
-              className="integration-step"
-              style={{ display: "flex", gap: "1.5rem" }}
-            >
-              <div
-                className="step-num font-mono text-cyan"
-                style={{
-                  fontSize: "1.25rem",
-                  fontWeight: "700",
-                  color: "var(--accent-cyan)",
-                  marginTop: "2px",
-                }}
-              >
-                02
+              <div className="integration-step">
+                <div className="step-num font-mono text-cyan">02</div>
+                <div className="step-content">
+                  <h4 className="step-title">PhonePe & RazorPay Payment Gateway</h4>
+                  <p className="step-desc">
+                    Integrated PhonePe & RazorPay payment gateway to facilitate seamless transactions for healthcare packages and consultations.
+                  </p>
+                </div>
               </div>
-              <div className="step-content">
-                <h4
-                  className="step-title"
-                  style={{
-                    fontSize: "1.125rem",
-                    fontWeight: "600",
-                    color: "#fff",
-                    marginBottom: "0.5rem",
-                  }}
-                >
-                  API Mesh Orchestration
-                </h4>
-                <p
-                  className="step-desc"
-                  style={{
-                    fontSize: "0.9375rem",
-                    color: "var(--text-secondary)",
-                    lineHeight: "1.5",
-                  }}
-                >
-                  Standardized RESTful and gRPC interfaces connecting Pharmacy,
-                  Lab, and Patient services.
-                </p>
+
+              <div className="integration-step">
+                <div className="step-num font-mono text-cyan">03</div>
+                <div className="step-content">
+                  <h4 className="step-title">Azure Blob Storage & Secure Downloads</h4>
+                  <p className="step-desc">
+                    Configured secure prescription uploads using Azure Blob Storage and generated secure signed URLs for lab report downloads.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="integration-right" style={{ position: "relative" }}>
-            <div
-              className="network-visual"
-              style={{
-                position: "relative",
-                borderRadius: "12px",
-                overflow: "hidden",
-                border: "1px solid var(--border-color)",
-                boxShadow: "0 20px 40px rgba(0,0,0,0.4)",
-              }}
-            >
+          <div className="integration-right">
+            <div className="network-visual">
               <img
                 src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80"
-                alt="Server network cables"
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  display: "block",
-                  opacity: 0.75,
-                }}
+                alt="Server network cables and integration architecture"
+                className="network-image"
               />
-              <div
-                className="network-overlay-dot animate-pulse"
-                style={{
-                  position: "absolute",
-                  top: "55%",
-                  left: "50%",
-                  width: "12px",
-                  height: "12px",
-                  borderRadius: "50%",
-                  backgroundColor: "var(--accent-cyan)",
-                  boxShadow: "0 0 15px var(--accent-cyan)",
-                }}
-              ></div>
+              <div className="network-overlay-dot dot-1"></div>
+              <div className="network-overlay-dot dot-2"></div>
+              <div className="network-overlay-dot dot-3"></div>
             </div>
           </div>
         </div>
@@ -1564,7 +900,7 @@ function App() {
         <div className="skills-grid">
           {/* Languages & Runtimes */}
           <div className="skills-card skills-card-01 reveal-left delay-1">
-            <span className="skills-card-number">01</span>
+            {/* <span className="skills-card-number">01</span> */}
             <h3 className="skills-card-title">
               <TerminalSquare size={18} style={{ marginRight: "8px" }} />{" "}
               Languages & Runtimes
@@ -1611,7 +947,7 @@ function App() {
 
           {/* Cloud & DevOps */}
           <div className="skills-card skills-card-02 reveal-right delay-2">
-            <span className="skills-card-number">02</span>
+            {/* <span className="skills-card-number">02</span> */}
             <h3 className="skills-card-title">
               <Cloud size={18} style={{ marginRight: "8px" }} /> Cloud & DevOps
             </h3>
@@ -1657,7 +993,7 @@ function App() {
 
           {/* Databases & Caching */}
           <div className="skills-card skills-card-03 reveal-left delay-3">
-            <span className="skills-card-number">03</span>
+            {/* <span className="skills-card-number">03</span> */}
             <h3 className="skills-card-title">
               <Database size={18} style={{ marginRight: "8px" }} /> Databases &
               Caching
@@ -1704,7 +1040,7 @@ function App() {
 
           {/* Architecture & APIs */}
           <div className="skills-card skills-card-04 reveal-right delay-4">
-            <span className="skills-card-number">04</span>
+            {/* <span className="skills-card-number">04</span> */}
             <h3 className="skills-card-title">
               <Network size={18} style={{ marginRight: "8px" }} /> Architecture
               & APIs
@@ -1823,12 +1159,12 @@ function App() {
       {/* Footer */}
       <footer className="footer reveal delay-2">
         <div>
-          <div className="text-cyan mb-2" style={{ fontWeight: 600 }}>
-            Sai Krishna Mateti
+          <div className="text-cyan mb-2" style={{ fontWeight: 450, fontSize: "20px" }}>
+            Sai Krishna Mateti · Backend Engineer · Hyderabad, India
           </div>
-          <div>© 2026 SAI KRISHNA MATETI | SYSTEM ARCHITECTED FOR SCALE</div>
+          <div style={{ fontSize: "16px" }}>© 2026 All rights reserved.</div>
         </div>
-        <div className="footer-links">
+        <div className="footer-links" style={{ fontSize: "16px", fontWeight: 300, color: "#00e5ff" }}>
           <a href="https://www.linkedin.com/in/saikrishna-mateti">LinkedIn</a>
           <a href="https://github.com/saikrishna2917">GitHub</a>
         </div>
@@ -1837,5 +1173,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
