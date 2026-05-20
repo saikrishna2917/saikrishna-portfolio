@@ -8,6 +8,8 @@
   --accent-cyan-dim: rgba(0, 229, 255, 0.1);
   --accent-green: #3fb950;
   --accent-green-dim: rgba(63, 185, 80, 0.1);
+  --accent-orange: #ff7b72;
+  --accent-orange-dim: rgba(255, 123, 114, 0.1);
   --border-color: #30363d;
   
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
@@ -518,80 +520,158 @@ button {
   font-size: 0.875rem;
 }
 
-.project-card {
-  position: relative;
-  border-radius: 8px;
-  overflow: hidden;
+/* Case Study Hero */
+.case-study-hero {
+  animation: fadeUp 1s ease-out;
+}
+
+.dashboard-visual {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dashboard-visual:hover {
+  transform: scale(1.02);
+}
+
+.uptime-card {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.uptime-card:hover {
+  transform: translateY(-2px) scale(1.05);
+  border-color: var(--accent-green);
+}
+
+/* Platform Modules Grid */
+.module-card {
+  background-color: var(--bg-darker);
   border: 1px solid var(--border-color);
-  background-color: var(--card-bg);
-}
-
-.project-image-placeholder {
-  height: 400px;
-  background: linear-gradient(to bottom, #1a202c, #0d1117);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  border-radius: 8px;
   padding: 2rem;
-}
-
-/* Decorative servers */
-.servers-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.2;
-  background-image: 
-    linear-gradient(90deg, transparent 95%, rgba(0, 229, 255, 0.2) 95%),
-    linear-gradient(0deg, transparent 95%, rgba(0, 229, 255, 0.2) 95%);
-  background-size: 50px 50px;
-}
-
-.project-info {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
-  z-index: 10;
+  overflow: hidden;
+}
+
+/* Hover effects */
+.module-card:hover {
+  transform: translateY(-8px);
+}
+
+.module-card-cyan:hover {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 12px 30px rgba(0, 229, 255, 0.08);
+}
+
+.module-card-green:hover {
+  border-color: var(--accent-green);
+  box-shadow: 0 12px 30px rgba(63, 185, 80, 0.08);
+}
+
+.module-card-orange:hover {
+  border-color: var(--accent-orange);
+  box-shadow: 0 12px 30px rgba(255, 123, 114, 0.08);
+}
+
+.module-icon-container {
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.module-card:hover .module-icon-container {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Bullet item icons */
+.bullet-icon {
+  transition: transform 0.3s ease;
+}
+
+.module-card:hover .bullet-icon {
+  transform: scale(1.2);
+}
+
+/* Terminal within Patient Services Card */
+.module-terminal {
+  transition: border-color 0.3s ease;
+}
+
+.module-card:hover .module-terminal {
+  border-color: rgba(0, 229, 255, 0.2);
+}
+
+/* Database visual in Pharmacy Module */
+.db-visual {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.module-card:hover .db-visual {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+/* Equalizer Visual inside Lab Management Card */
+.equalizer {
   display: flex;
-  justify-content: space-between;
+  gap: 4px;
   align-items: flex-end;
+  height: 40px;
 }
 
-.project-details {
-  max-width: 50%;
+.equalizer .bar {
+  width: 6px;
+  background-color: var(--accent-orange);
+  border-radius: 3px;
+  animation: equalize 1.2s ease-in-out infinite;
 }
 
-.project-tags {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
+.equalizer .bar-1 { height: 15px; animation-delay: 0.1s; }
+.equalizer .bar-2 { height: 35px; animation-delay: 0.4s; }
+.equalizer .bar-3 { height: 25px; animation-delay: 0.2s; }
+.equalizer .bar-4 { height: 10px; animation-delay: 0.6s; }
+
+/* Equalizer keyframe animation */
+@keyframes equalize {
+  0% { height: 10px; }
+  50% { height: 35px; }
+  100% { height: 10px; }
 }
 
-.project-desc {
-  font-size: 1.125rem;
+/* Speed up equalizer animation on hover */
+.module-card:hover .equalizer .bar {
+  animation-duration: 0.6s;
+  background-color: #ff9e96;
 }
 
-.project-stats {
-  display: flex;
-  gap: 2rem;
-  text-align: right;
+/* Network Cables / Integration Architecture Visuals */
+.network-visual {
+  transition: transform 0.5s ease;
 }
 
-.stat-value {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--accent-cyan);
-  line-height: 1;
-  margin-bottom: 0.25rem;
+.network-visual:hover {
+  transform: scale(1.02);
 }
 
-.stat-label {
-  font-size: 0.625rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-secondary);
-  font-family: var(--font-mono);
+.network-overlay-dot {
+  animation: pulseGlow 2s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 10px var(--accent-cyan);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.5);
+    box-shadow: 0 0 25px var(--accent-cyan);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 10px var(--accent-cyan);
+    opacity: 0.8;
+  }
 }
 
 /* Footer */
@@ -609,6 +689,163 @@ button {
 .footer-links {
   display: flex;
   gap: 1.5rem;
+}
+
+/* Skills Section */
+.skills-section {
+  margin-bottom: 6rem;
+  padding-top: 1rem;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.skills-card {
+  background-color: var(--bg-darker);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 2rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.skills-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 229, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 229, 255, 0.08);
+}
+
+.skills-card-title {
+  font-size: 1.25rem;
+  color: var(--accent-cyan);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.skill-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.skill-info {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+}
+
+.skill-name {
+  color: var(--text-primary);
+}
+
+.skill-level-text {
+  color: var(--accent-green);
+}
+
+.skill-progress-terminal {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+}
+
+/* Education Section */
+.education-section {
+  margin-bottom: 6rem;
+  padding-top: 1rem;
+}
+
+.education-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.education-card {
+  background-color: var(--bg-darker);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 2.5rem;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  transition: border-color 0.3s ease;
+}
+
+.education-card:hover {
+  border-color: rgba(63, 185, 80, 0.3);
+}
+
+.education-details {
+  max-width: 60%;
+}
+
+.education-degree {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.education-school {
+  color: var(--accent-green);
+  font-size: 1.125rem;
+  margin-bottom: 1rem;
+}
+
+.education-meta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  display: flex;
+  gap: 1.5rem;
+}
+
+.education-card-terminal {
+  background-color: #05080f;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 1rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  width: 320px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.education-card-terminal .terminal-line {
+  margin-bottom: 0.35rem;
+}
+
+.education-card-terminal .terminal-line:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 1024px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .education-card {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .education-card-terminal {
+    width: 100%;
+  }
 }
 
 /* Experience Section */
@@ -702,6 +939,13 @@ button {
   padding: 2rem;
   position: relative;
   max-width: 85%;
+  transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.exp-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(63, 185, 80, 0.3);
+  box-shadow: 0 15px 35px rgba(63, 185, 80, 0.05);
 }
 
 .exp-card-header {
@@ -751,6 +995,13 @@ button {
   padding: 1.5rem;
   border-radius: 6px;
   border: 1px solid var(--border-color);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.exp-grid-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 229, 255, 0.3);
+  box-shadow: 0 8px 20px rgba(0, 229, 255, 0.05);
 }
 
 .exp-grid-title {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { 
   Download, 
   ArrowRight, 
@@ -17,7 +18,12 @@ import {
   Target,
   Network,
   Lock,
-  Trophy
+  Trophy,
+  Users,
+  Activity,
+  PlusSquare,
+  FlaskConical,
+  CheckCircle2
 } from 'lucide-react';
 
 const allLogs = [
@@ -109,6 +115,7 @@ function App() {
 
   return (
     <div className="container" style={{ position: 'relative' }}>
+      <Analytics />
       {/* Background Glowing Dots */}
       <div className="bg-dot" style={{ top: '15%', left: '5%', animation: 'floatDot 8s ease-in-out infinite' }}></div>
       <div className="bg-dot" style={{ top: '45%', right: '10%', animation: 'floatDot 12s ease-in-out infinite 2s' }}></div>
@@ -301,10 +308,6 @@ function App() {
       <section className="experience-section" id="experience">
         <div className="exp-header">
           <h2 className="exp-title">Professional Experience</h2>
-          {/* <div> */}
-            {/* <h2 className="exp-title">Professional Experience</h2> */}
-            {/* <div className="exp-subtitle">_ &gt; path/to/career/history</div> */}
-          {/* </div> */}
           <div className="exp-status">
             <div className="exp-status-label">LATEST STATUS</div>
             <div className="exp-status-value">ACTIVE_DEPLOYMENT</div>
@@ -321,7 +324,6 @@ function App() {
                   <h3 className="exp-role">Software Engineer L3</h3>
                   <div className="exp-company">Archents IT</div>
                 </div>
-                {/* <div className="exp-id-badge">ID: ARCH_SWE_03</div> */}
               </div>
 
               <div className="exp-grid">
@@ -401,92 +403,401 @@ function App() {
               </div>
             </div>
           </div>
-
-          {/* Older Job */}
-          {/* <div className="timeline-item">
-            <div className="old-exp-card">
-              <div className="old-exp-date">2019 — 2021</div>
-              <h3 className="old-exp-role">Backend Developer</h3>
-              <div className="old-exp-company">Previous Engineering Firm</div>
-              <div className="old-exp-tags">
-                <span className="old-exp-tag">Java</span>
-                <span className="old-exp-tag">Spring Boot</span>
-                <span className="old-exp-tag">SQL</span>
-              </div>
-            </div>
-            <div className="timeline-dot-bottom"></div>
-          </div>
-        </div> */}
-
-        {/* <div className="thumbnails-grid">
-          <div className="thumbnail">
-            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80" alt="Circuit board" className="thumbnail-img" />
-            <div className="thumbnail-tag">SYSTEM_ARCH</div>
-          </div>
-          <div className="thumbnail">
-            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=400&q=80" alt="Fiber optics" className="thumbnail-img" />
-            <div className="thumbnail-tag text-green" style={{ backgroundColor: 'var(--accent-green)', color: 'var(--bg-darker)' }}>CLOUD_NATIVE</div>
-          </div>
-          <div className="thumbnail">
-            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=400&q=80" alt="Code on monitors" className="thumbnail-img" />
-            <div className="thumbnail-tag" style={{ backgroundColor: '#c5d1fa', color: '#1a202c' }}>ENGINEERING_L3</div>
-          </div> */}
         </div>
       </section>
 
-      {/* Project Spotlight */}
-      {/* <section className="project-spotlight" id="projects">
-        <div className="section-label">PROJECT SPOTLIGHT</div>
-        <div className="project-header">
-          <h2 className="project-title">Scalable Engine v2.0</h2>
-          <a href="#" className="project-link">
-            View Case Study <ArrowRight size={16} />
-          </a>
+      {/* Project Spotlight (Ciana Healthcare Platform) */}
+      <section className="project-spotlight reveal delay-1" id="projects" style={{ marginBottom: '6rem' }}>
+        <div className="section-label">SYSTEM ARCHITECTURE CASE STUDY</div>
+        
+        {/* Case Study Hero */}
+        <div className="case-study-hero" style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '3rem', marginBottom: '5rem', alignItems: 'center' }}>
+          <div className="hero-left">
+            <h1 className="case-study-title" style={{ fontSize: '3rem', fontWeight: '800', lineHeight: '1.1', marginBottom: '1.5rem', color: '#fff' }}>
+              Ciana Healthcare Platform
+            </h1>
+            <p className="case-study-desc" style={{ fontSize: '1.125rem', lineHeight: '1.6', color: 'var(--text-secondary)', marginBottom: '2rem' }}>
+              A robust, distributed microservices ecosystem designed to modernize patient-doctor interactions, pharmacy logistics, and laboratory workflows through secure, real-time data orchestration.
+            </p>
+            <div className="case-study-tags" style={{ display: 'flex', gap: '0.75rem' }}>
+              <span className="badge badge-outline" style={{ borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}>Microservices</span>
+              <span className="badge badge-outline text-green" style={{ borderColor: 'var(--accent-green-dim)', backgroundColor: 'rgba(63, 185, 80, 0.05)', color: 'var(--accent-green)' }}>HIPAA Compliant</span>
+              <span className="badge badge-outline text-cyan" style={{ borderColor: 'var(--accent-cyan-dim)', backgroundColor: 'rgba(0, 229, 255, 0.05)', color: 'var(--accent-cyan)' }}>Event-Driven</span>
+            </div>
+          </div>
+          
+          <div className="hero-right" style={{ position: 'relative' }}>
+            <div className="dashboard-visual" style={{ position: 'relative', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--border-color)', boxShadow: '0 20px 40px rgba(0,0,0,0.4)' }}>
+              <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80" alt="Ciana Healthcare Dashboard Analytics" style={{ width: '100%', height: 'auto', display: 'block', opacity: 0.75 }} />
+              <div className="uptime-card animate-float" style={{ position: 'absolute', bottom: '20px', left: '-20px', backgroundColor: 'rgba(13, 17, 23, 0.9)', backdropFilter: 'blur(8px)', border: '1px solid var(--border-color)', borderRadius: '8px', padding: '1rem 1.5rem', boxShadow: '0 10px 25px rgba(0,255,123,0.1)' }}>
+                <div className="uptime-value text-green" style={{ fontSize: '1.75rem', fontWeight: '800', color: 'var(--accent-green)', lineHeight: '1.2' }}>99.9%</div>
+                <div className="uptime-label" style={{ fontSize: '0.625rem', color: 'var(--text-secondary)', fontWeight: '600', letterSpacing: '0.1em', marginTop: '2px' }}>UPTIME PERFORMANCE</div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="project-card">
-          <div className="project-image-placeholder">
-            <div className="servers-bg"></div>
-            
-            {/* Server rack illustration CSS */}
-            {/* <div style={{ display: 'flex', gap: '20px', position: 'absolute', bottom: '0', left: '10%', right: '10%', height: '80%', opacity: 0.3 }}>
-               {[1,2,3,4,5].map(i => (
-                 <div key={i} style={{ flex: 1, backgroundColor: '#05080f', border: '1px solid #30363d', borderBottom: 'none', display: 'flex', flexDirection: 'column', gap: '10px', padding: '10px' }}>
-                    {[1,2,3,4,5,6,7,8].map(j => (
-                      <div key={j} style={{ height: '20px', backgroundColor: '#161b22', border: '1px solid #30363d', position: 'relative' }}>
-                        <div style={{ position: 'absolute', right: '5px', top: '5px', width: '4px', height: '4px', borderRadius: '50%', backgroundColor: Math.random() > 0.3 ? '#27c93f' : '#30363d', boxShadow: Math.random() > 0.3 ? '0 0 5px #27c93f' : 'none' }}></div>
-                      </div>
-                    ))}
-                 </div>
-               ))}
-            </div> */}
+        {/* Platform Modules Header */}
+        <div className="modules-header flex justify-between items-end" style={{ marginBottom: '2.5rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '1.5rem' }}>
+          <div>
+            <h2 className="modules-title" style={{ fontSize: '2rem', fontWeight: '700', color: '#fff', marginBottom: '0.5rem' }}>Platform Modules</h2>
+            <p className="modules-subtitle" style={{ color: 'var(--text-secondary)' }}>Core service layers architected for high throughput and low latency.</p>
+          </div>
+          <div className="modules-path font-mono text-cyan" style={{ fontSize: '0.8125rem', color: 'var(--accent-cyan)', opacity: 0.8 }}>_ROOT/CIANA_PLATFORM/SRC</div>
+        </div>
 
-            {/* <div className="project-info">
-              <div className="project-details">
-                <div className="project-tags">
-                  <span className="badge badge-outline">Microservices</span>
-                  <span className="badge badge-outline text-green" style={{ borderColor: 'var(--accent-green-dim)', backgroundColor: 'rgba(63, 185, 80, 0.05)' }}>Event-Driven</span>
-                  <span className="badge badge-outline text-cyan" style={{ borderColor: 'var(--accent-cyan-dim)', backgroundColor: 'rgba(0, 229, 255, 0.05)' }}>Azure Functions</span>
-                </div>
-                <p className="project-desc">
-                  A distributed message-processing engine capable of handling 1.2 billion events per month with guaranteed atomicity.
-                </p>
+        {/* Modules Grid */}
+        <div className="modules-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginBottom: '5rem' }}>
+          {/* Card 1: Patient Services */}
+          <div className="module-card module-card-cyan" style={{ position: 'relative' }}>
+            <div className="module-card-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+              <div className="module-icon-container" style={{ padding: '0.75rem', borderRadius: '8px', backgroundColor: 'rgba(0, 229, 255, 0.05)', border: '1px solid var(--accent-cyan-dim)' }}>
+                <Users size={20} className="text-cyan" style={{ color: 'var(--accent-cyan)' }} />
               </div>
+              <div className="module-version font-mono text-xs" style={{ color: 'var(--text-secondary)' }}>v2.4.0</div>
+            </div>
+            
+            <div className="module-card-body">
+              <h3 className="module-name" style={{ fontSize: '1.5rem', fontWeight: '600', marginBottom: '0.75rem', color: '#fff' }}>Patient Services</h3>
+              <p className="module-desc" style={{ fontSize: '0.9375rem', color: 'var(--text-secondary)', marginBottom: '1.5rem', lineHeight: '1.5' }}>
+                Omnichannel patient engagement portal prioritizing accessibility and rapid medical intervention.
+              </p>
               
-              <div className="project-stats">
-                <div>
-                  <div className="stat-value">1.2B</div>
-                  <div className="stat-label">MONTHLY EVENTS</div>
+              <ul className="module-bullets" style={{ listStyle: 'none', padding: 0, margin: '0 0 2rem 0', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
+                  <CheckCircle2 size={16} className="bullet-icon text-green" style={{ color: 'var(--accent-green)', flexShrink: 0, marginTop: '2px' }} />
+                  <span style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>Face Scan AI for touchless check-ins and identity verification.</span>
+                </li>
+                <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
+                  <CheckCircle2 size={16} className="bullet-icon text-green" style={{ color: 'var(--accent-green)', flexShrink: 0, marginTop: '2px' }} />
+                  <span style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>PhonePe integration for seamless automated billing and insurance claims.</span>
+                </li>
+                <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
+                  <CheckCircle2 size={16} className="bullet-icon text-green" style={{ color: 'var(--accent-green)', flexShrink: 0, marginTop: '2px' }} />
+                  <span style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>Unified health timeline with multi-hospital history syncing.</span>
+                </li>
+              </ul>
+              
+              <div className="module-terminal" style={{ backgroundColor: '#05080f', border: '1px solid var(--border-color)', borderRadius: '6px', padding: '1rem 1.25rem', boxShadow: 'inset 0 0 10px rgba(0,0,0,0.5)' }}>
+                <div className="terminal-bar flex justify-between items-center mb-2" style={{ borderBottom: '1px solid #161b22', paddingBottom: '0.5rem', marginBottom: '0.5rem' }}>
+                  <span className="flex items-center gap-1 font-mono text-xs" style={{ color: 'var(--accent-cyan)' }}><Lock size={12} style={{ color: 'var(--accent-cyan)' }} /> auth_service.logs</span>
                 </div>
-                <div>
-                  <div className="stat-value text-green" style={{ color: 'var(--accent-green)' }}>45ms</div>
-                  <div className="stat-label">P99 LATENCY</div>
+                <div className="terminal-body font-mono text-xs" style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+                  <div style={{ color: 'var(--text-secondary)' }}>[INFO] Request: POST /api/v1/patient/checkin</div>
+                  <div style={{ color: 'var(--text-secondary)' }}>[INFO] Identity Verified: biometric_ai_scan</div>
+                  <div style={{ color: 'var(--text-secondary)' }}>[INFO] Payment Gateway: PHONEPE_TXN_8823</div>
+                  <div style={{ color: 'var(--accent-green)' }}>[SUCCESS] EMR link established.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 2: Doctor Workflows */}
+          <div className="module-card module-card-green" style={{ position: 'relative', display: 'flex', flexDirection: 'column' }}>
+            <div className="module-card-header" style={{ marginBottom: '1.5rem' }}>
+              <div className="module-icon-container" style={{ display: 'inline-block', padding: '0.75rem', borderRadius: '8px', backgroundColor: 'rgba(63, 185, 80, 0.05)', border: '1px solid var(--accent-green-dim)' }}>
+                <Activity size={20} className="text-green" style={{ color: 'var(--accent-green)' }} />
+              </div>
+            </div>
+            
+            <div className="module-card-body" style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+              <h3 className="module-name" style={{ fontSize: '1.5rem', fontWeight: '600', marginBottom: '0.75rem', color: '#fff' }}>Doctor Workflows</h3>
+              <p className="module-desc" style={{ fontSize: '0.9375rem', color: 'var(--text-secondary)', marginBottom: '1.5rem', lineHeight: '1.5' }}>
+                Streamlined clinical environment focused on patient outcomes over administrative overhead.
+              </p>
+              
+              <ul className="module-bullets" style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
+                  <CheckCircle2 size={16} className="bullet-icon text-green" style={{ color: 'var(--accent-green)', flexShrink: 0, marginTop: '2px' }} />
+                  <span style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>One-click EMR generation using NLP transcription.</span>
+                </li>
+                <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
+                  <CheckCircle2 size={16} className="bullet-icon text-green" style={{ color: 'var(--accent-green)', flexShrink: 0, marginTop: '2px' }} />
+                  <span style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>Digital prescriptions with drug interaction alerts.</span>
+                </li>
+              </ul>
+              
+              <div className="efficiency-footer" style={{ marginTop: 'auto', paddingTop: '2.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid var(--border-color)' }}>
+                <span style={{ fontSize: '0.6875rem', color: 'var(--text-secondary)', fontWeight: '600', fontFamily: 'var(--font-mono)' }}>EFFICIENCY GAIN</span>
+                <span style={{ fontSize: '1.5rem', fontWeight: '800', color: 'var(--accent-green)' }}>+40%</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 3: Pharmacy Module */}
+          <div className="module-card module-card-cyan" style={{ position: 'relative' }}>
+            <div className="module-card-header" style={{ marginBottom: '1.5rem' }}>
+              <div className="module-icon-container" style={{ display: 'inline-block', padding: '0.75rem', borderRadius: '8px', backgroundColor: 'rgba(0, 229, 255, 0.05)', border: '1px solid var(--accent-cyan-dim)' }}>
+                <PlusSquare size={20} className="text-cyan" style={{ color: 'var(--accent-cyan)' }} />
+              </div>
+            </div>
+            
+            <div className="module-card-body flex-row" style={{ display: 'flex', gap: '1.5rem', height: 'calc(100% - 68px)' }}>
+              <div className="module-info-left" style={{ flexGrow: 1 }}>
+                <h3 className="module-name" style={{ fontSize: '1.5rem', fontWeight: '600', marginBottom: '0.75rem', color: '#fff' }}>Pharmacy Module</h3>
+                <ul className="module-bullets" style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                  <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
+                    <CheckCircle2 size={16} className="bullet-icon text-green" style={{ color: 'var(--accent-green)', flexShrink: 0, marginTop: '2px' }} />
+                    <span style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>Inventory tracking with low-stock predictive ordering.</span>
+                  </li>
+                  <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
+                    <CheckCircle2 size={16} className="bullet-icon text-green" style={{ color: 'var(--accent-green)', flexShrink: 0, marginTop: '2px' }} />
+                    <span style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>QR-based dispensing to eliminate medication errors.</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="module-visual-right flex items-center justify-center" style={{ flexShrink: 0, width: '120px', height: '120px', borderRadius: '8px', backgroundColor: '#05080f', border: '1px solid var(--border-color)', position: 'relative' }}>
+                <div className="db-visual" style={{ position: 'relative' }}>
+                  <Database size={44} style={{ color: 'var(--accent-cyan)', filter: 'drop-shadow(0 0 10px rgba(0,229,255,0.3))' }} />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 4: Lab Management */}
+          <div className="module-card module-card-orange" style={{ position: 'relative' }}>
+            <div className="module-card-header" style={{ marginBottom: '1.5rem' }}>
+              <div className="module-icon-container" style={{ display: 'inline-block', padding: '0.75rem', borderRadius: '8px', backgroundColor: 'rgba(255, 123, 114, 0.05)', border: '1px solid var(--accent-orange-dim)' }}>
+                <FlaskConical size={20} style={{ color: 'var(--accent-orange)' }} />
+              </div>
+            </div>
+            
+            <div className="module-card-body flex-row" style={{ display: 'flex', gap: '1.5rem', height: 'calc(100% - 68px)' }}>
+              <div className="module-info-left" style={{ flexGrow: 1 }}>
+                <h3 className="module-name" style={{ fontSize: '1.5rem', fontWeight: '600', marginBottom: '0.75rem', color: '#fff' }}>Lab Management</h3>
+                <ul className="module-bullets" style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                  <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
+                    <CheckCircle2 size={16} className="bullet-icon text-green" style={{ color: 'var(--accent-green)', flexShrink: 0, marginTop: '2px' }} />
+                    <span style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>Automated LIS (Lab Information System) integration.</span>
+                  </li>
+                  <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
+                    <CheckCircle2 size={16} className="bullet-icon text-green" style={{ color: 'var(--accent-green)', flexShrink: 0, marginTop: '2px' }} />
+                    <span style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>DICOM image hosting for imaging centers.</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="module-visual-right flex items-center justify-center" style={{ flexShrink: 0, width: '120px', height: '120px', borderRadius: '8px', backgroundColor: '#05080f', border: '1px solid var(--border-color)', overflow: 'hidden' }}>
+                <div className="equalizer" style={{ display: 'flex', gap: '4px', alignItems: 'flex-end', height: '40px' }}>
+                  <div className="bar bar-1"></div>
+                  <div className="bar bar-2"></div>
+                  <div className="bar bar-3"></div>
+                  <div className="bar bar-4"></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section> */}
+
+        {/* Integration Architecture */}
+        <div className="integration-architecture" style={{ display: 'grid', gridTemplateColumns: '1.12fr 0.88fr', gap: '4rem', alignItems: 'center' }}>
+          <div className="integration-left">
+            <h2 className="integration-title" style={{ fontSize: '2.5rem', fontWeight: '800', color: '#fff', marginBottom: '2.5rem' }}>Integration Architecture</h2>
+            
+            <div className="integration-step" style={{ display: 'flex', gap: '1.5rem', marginBottom: '2rem' }}>
+              <div className="step-num font-mono text-cyan" style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--accent-cyan)', marginTop: '2px' }}>01</div>
+              <div className="step-content">
+                <h4 className="step-title" style={{ fontSize: '1.125rem', fontWeight: '600', color: '#fff', marginBottom: '0.5rem' }}>Secure Data Pipelines</h4>
+                <p className="step-desc" style={{ fontSize: '0.9375rem', color: 'var(--text-secondary)', lineHeight: '1.5' }}>
+                  End-to-end encrypted tunnels for sensitive medical records (EMR) using AES-256 standards.
+                </p>
+              </div>
+            </div>
+
+            <div className="integration-step" style={{ display: 'flex', gap: '1.5rem' }}>
+              <div className="step-num font-mono text-cyan" style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--accent-cyan)', marginTop: '2px' }}>02</div>
+              <div className="step-content">
+                <h4 className="step-title" style={{ fontSize: '1.125rem', fontWeight: '600', color: '#fff', marginBottom: '0.5rem' }}>API Mesh Orchestration</h4>
+                <p className="step-desc" style={{ fontSize: '0.9375rem', color: 'var(--text-secondary)', lineHeight: '1.5' }}>
+                  Standardized RESTful and gRPC interfaces connecting Pharmacy, Lab, and Patient services.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="integration-right" style={{ position: 'relative' }}>
+            <div className="network-visual" style={{ position: 'relative', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--border-color)', boxShadow: '0 20px 40px rgba(0,0,0,0.4)' }}>
+              <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" alt="Server network cables" style={{ width: '100%', height: 'auto', display: 'block', opacity: 0.75 }} />
+              <div className="network-overlay-dot animate-pulse" style={{ position: 'absolute', top: '55%', left: '50%', width: '12px', height: '12px', borderRadius: '50%', backgroundColor: 'var(--accent-cyan)', boxShadow: '0 0 15px var(--accent-cyan)' }}></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section className="skills-section reveal delay-1" id="skills">
+        <div className="section-label">TECHNICAL CAPABILITIES</div>
+        <div className="project-header">
+          <h2 className="project-title">Skills & Shards</h2>
+        </div>
+
+        <div className="skills-grid">
+          {/* Languages & Runtimes */}
+          <div className="skills-card">
+            <h3 className="skills-card-title">
+              <Cpu size={18} className="text-cyan" style={{ marginRight: '8px' }} /> Languages & Runtimes
+            </h3>
+            <div className="skill-list">
+              <div className="skill-item">
+                <div className="skill-info">
+                  <span className="skill-name">Node.js / Express</span>
+                  <span className="skill-level-text">90%</span>
+                </div>
+                <div className="skill-progress-terminal">[█████████░]</div>
+              </div>
+              <div className="skill-item">
+                <div className="skill-info">
+                  <span className="skill-name">JavaScript (ES6+)</span>
+                  <span className="skill-level-text">95%</span>
+                </div>
+                <div className="skill-progress-terminal">[██████████]</div>
+              </div>
+              <div className="skill-item">
+                <div className="skill-info">
+                  <span className="skill-name">HTML5 / CSS3</span>
+                  <span className="skill-level-text">85%</span>
+                </div>
+                <div className="skill-progress-terminal">[████████░░]</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Cloud & DevOps */}
+          <div className="skills-card">
+            <h3 className="skills-card-title">
+              <Cloud size={18} className="text-cyan" style={{ marginRight: '8px' }} /> Cloud & DevOps
+            </h3>
+            <div className="skill-list">
+              <div className="skill-item">
+                <div className="skill-info">
+                  <span className="skill-name">Azure Cloud Services</span>
+                  <span className="skill-level-text">85%</span>
+                </div>
+                <div className="skill-progress-terminal">[████████░░]</div>
+              </div>
+              <div className="skill-item">
+                <div className="skill-info">
+                  <span className="skill-name">Docker Containerization</span>
+                  <span className="skill-level-text">90%</span>
+                </div>
+                <div className="skill-progress-terminal">[█████████░]</div>
+              </div>
+              <div className="skill-item">
+                <div className="skill-info">
+                  <span className="skill-name">CI/CD Pipelines (Git)</span>
+                  <span className="skill-level-text">80%</span>
+                </div>
+                <div className="skill-progress-terminal">[████████░░]</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Databases & Caching */}
+          <div className="skills-card">
+            <h3 className="skills-card-title">
+              <Database size={18} className="text-cyan" style={{ marginRight: '8px' }} /> Databases & Caching
+            </h3>
+            <div className="skill-list">
+              <div className="skill-item">
+                <div className="skill-info">
+                  <span className="skill-name">MongoDB (NoSQL)</span>
+                  <span className="skill-level-text">90%</span>
+                </div>
+                <div className="skill-progress-terminal">[█████████░]</div>
+              </div>
+              <div className="skill-item">
+                <div className="skill-info">
+                  <span className="skill-name">Redis (Caching Layer)</span>
+                  <span className="skill-level-text">85%</span>
+                </div>
+                <div className="skill-progress-terminal">[████████░░]</div>
+              </div>
+              <div className="skill-item">
+                <div className="skill-info">
+                  <span className="skill-name">Query Optimization</span>
+                  <span className="skill-level-text">90%</span>
+                </div>
+                <div className="skill-progress-terminal">[█████████░]</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Architecture & APIs */}
+          <div className="skills-card">
+            <h3 className="skills-card-title">
+              <Server size={18} className="text-cyan" style={{ marginRight: '8px' }} /> Architecture & APIs
+            </h3>
+            <div className="skill-list">
+              <div className="skill-item">
+                <div className="skill-info">
+                  <span className="skill-name">Microservices Architecture</span>
+                  <span className="skill-level-text">95%</span>
+                </div>
+                <div className="skill-progress-terminal">[██████████]</div>
+              </div>
+              <div className="skill-item">
+                <div className="skill-info">
+                  <span className="skill-name">RESTful API Design</span>
+                  <span className="skill-level-text">90%</span>
+                </div>
+                <div className="skill-progress-terminal">[█████████░]</div>
+              </div>
+              <div className="skill-item">
+                <div className="skill-info">
+                  <span className="skill-name">System Observability (Logs)</span>
+                  <span className="skill-level-text">85%</span>
+                </div>
+                <div className="skill-progress-terminal">[████████░░]</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Education Section */}
+      <section className="education-section reveal delay-1" id="education">
+        <div className="section-label">ACADEMIC & CERTIFICATIONS</div>
+        <div className="project-header">
+          <h2 className="project-title">Education & Credentials</h2>
+        </div>
+
+        <div className="education-list">
+          {/* Degree */}
+          <div className="education-card">
+            <div className="education-details">
+              <h3 className="education-degree">Bachelor of Technology in Computer Science</h3>
+              <div className="education-school">Jawaharlal Nehru Technological University</div>
+              <div className="education-meta">
+                <span>TERM: 2017 — 2021</span>
+                <span>MAJOR: COMPUTER SCIENCE & ENGINEERING</span>
+              </div>
+            </div>
+            <div className="education-card-terminal">
+              <div className="terminal-line"><span className="text-cyan">&gt; FETCH</span> degree_data</div>
+              <div className="terminal-line"><span className="text-green">STATUS</span>: COMPLETED_SUCCESSFULLY</div>
+              <div className="terminal-line"><span className="text-green">GPA</span>: 8.2 / 10.0</div>
+              <div className="terminal-line"><span className="text-green">CREDENTIAL</span>: SKM-BTECH-2021</div>
+            </div>
+          </div>
+
+          {/* Certifications */}
+          <div className="education-card">
+            <div className="education-details">
+              <h3 className="education-degree">Azure Solutions Architect & Developer</h3>
+              <div className="education-school">Microsoft Certification</div>
+              <div className="education-meta">
+                <span>TERM: 2022</span>
+                <span>FOCUS: ENTERPRISE CLOUD ARCHITECTURE</span>
+              </div>
+            </div>
+            <div className="education-card-terminal">
+              <div className="terminal-line"><span className="text-cyan">&gt; VERIFY</span> microsoft_certs</div>
+              <div className="terminal-line"><span className="text-green">STATUS</span>: ACTIVE</div>
+              <div className="terminal-line"><span className="text-green">EXAMS</span>: AZ-204, AZ-305</div>
+              <div className="terminal-line"><span className="text-green">PROVIDER</span>: MICROSOFT_CORP</div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Footer */}
       <footer className="footer">
