@@ -1828,7 +1828,6 @@ function App() {
           <a href="#">Documentation</a>
         </div>
       </footer>
-      <Analytics />
     </div>
   );
 }
