@@ -610,14 +610,12 @@ function App() {
         </div>
       </section>
 
-      {/* Project Spotlight (Ciana Healthcare Platform) */}
+      {/* Project Spotlight (ciana Healthcare Platform) */}
       <section
         className="project-spotlight reveal delay-1"
         id="projects"
         style={{ marginBottom: "6rem" }}
       >
-        <div className="section-label">SYSTEM ARCHITECTURE CASE STUDY</div>
-
         {/* Case Study Hero */}
         <div
           className="case-study-hero"
@@ -630,6 +628,7 @@ function App() {
           }}
         >
           <div className="hero-left">
+            <div className="section-label" style={{ marginBottom: "0.75rem" }}>SYSTEM ARCHITECTURE CASE STUDY</div>
             <h1
               className="case-study-title"
               style={{
@@ -693,37 +692,48 @@ function App() {
 
           <div className="hero-right" style={{ position: "relative" }}>
             <div
-              className="dashboard-visual"
               style={{
                 position: "relative",
-                borderRadius: "12px",
-                overflow: "hidden",
-                border: "1px solid var(--border-color)",
-                boxShadow: "0 20px 40px rgba(0,0,0,0.4)",
+                width: "100%",
+                maxWidth: "360px",
+                marginLeft: "auto",
               }}
             >
-              <img
-                src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80"
-                alt="Ciana Healthcare Dashboard Analytics"
+              <div
+                className="dashboard-visual"
                 style={{
-                  width: "100%",
-                  height: "auto",
-                  display: "block",
-                  opacity: 0.75,
+                  borderRadius: "12px",
+                  overflow: "hidden",
+                  border: "1px solid var(--border-color)",
+                  boxShadow: "0 20px 40px rgba(0,0,0,0.4)",
                 }}
-              />
+              >
+                <img
+                  src="/images/ciana-spotlight.png"
+                  alt="Ciana Healthcare Dashboard Analytics"
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    display: "block",
+                    opacity: 0.9,
+                  }}
+                />
+              </div>
+
+              {/* Floating Uptime Card */}
               <div
                 className="uptime-card animate-float"
                 style={{
                   position: "absolute",
                   bottom: "20px",
                   left: "-20px",
-                  backgroundColor: "rgba(13, 17, 23, 0.9)",
+                  backgroundColor: "rgba(13, 17, 23, 0.95)",
                   backdropFilter: "blur(8px)",
                   border: "1px solid var(--border-color)",
                   borderRadius: "8px",
                   padding: "1rem 1.5rem",
-                  boxShadow: "0 10px 25px rgba(0,255,123,0.1)",
+                  boxShadow: "0 10px 25px rgba(0,255,123,0.15)",
+                  zIndex: 10,
                 }}
               >
                 <div
@@ -791,7 +801,6 @@ function App() {
               opacity: 0.8,
             }}
           >
-            _ROOT/CIANA_PLATFORM/SRC
           </div>
         </div>
 
@@ -1550,17 +1559,31 @@ function App() {
       {/* Skills Section */}
       <section className="skills-section reveal delay-1" id="skills">
         <div className="section-label">TECHNICAL CAPABILITIES</div>
-        <div className="project-header">
-          <h2 className="project-title">Skills & Shards</h2>
+        <div className="project-header" style={{ marginBottom: "1.25rem" }}>
+          <h2 className="project-title" style={{ fontSize: "2.5rem", fontWeight: "800" }}>
+            Skills & Shards
+            <span
+              className="cursor-blink"
+              style={{
+                color: "var(--accent-cyan)",
+                animation: "blink 1s step-end infinite",
+              }}
+            >
+              _
+            </span>
+          </h2>
         </div>
+        <p style={{ color: "var(--text-secondary)", marginBottom: "3.5rem", maxWidth: "600px", fontSize: "0.9375rem", lineHeight: "1.6" }}>
+          Systematic breakdown of technical proficiency across the backend stack. Each shard represents a core pillar of architectural integrity and operational excellence.
+        </p>
 
         <div className="skills-grid">
           {/* Languages & Runtimes */}
-          <div className="skills-card">
+          <div className="skills-card skills-card-01">
+            <span className="skills-card-number">01</span>
             <h3 className="skills-card-title">
-              <Cpu
+              <TerminalSquare
                 size={18}
-                className="text-cyan"
                 style={{ marginRight: "8px" }}
               />{" "}
               Languages & Runtimes
@@ -1571,31 +1594,37 @@ function App() {
                   <span className="skill-name">Node.js / Express</span>
                   <span className="skill-level-text">90%</span>
                 </div>
-                <div className="skill-progress-terminal">[█████████░]</div>
+                <div className="skill-progress-container">
+                  <div className="skill-progress-bar-fill" style={{ width: "90%" }}></div>
+                </div>
               </div>
               <div className="skill-item">
                 <div className="skill-info">
-                  <span className="skill-name">JavaScript (ES6+)</span>
+                  <span className="skill-name">JavaScript ES6+</span>
                   <span className="skill-level-text">95%</span>
                 </div>
-                <div className="skill-progress-terminal">[██████████]</div>
+                <div className="skill-progress-container">
+                  <div className="skill-progress-bar-fill" style={{ width: "95%" }}></div>
+                </div>
               </div>
               <div className="skill-item">
                 <div className="skill-info">
                   <span className="skill-name">HTML5 / CSS3</span>
                   <span className="skill-level-text">85%</span>
                 </div>
-                <div className="skill-progress-terminal">[████████░░]</div>
+                <div className="skill-progress-container">
+                  <div className="skill-progress-bar-fill" style={{ width: "85%" }}></div>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Cloud & DevOps */}
-          <div className="skills-card">
+          <div className="skills-card skills-card-02">
+            <span className="skills-card-number">02</span>
             <h3 className="skills-card-title">
               <Cloud
                 size={18}
-                className="text-cyan"
                 style={{ marginRight: "8px" }}
               />{" "}
               Cloud & DevOps
@@ -1603,34 +1632,40 @@ function App() {
             <div className="skill-list">
               <div className="skill-item">
                 <div className="skill-info">
-                  <span className="skill-name">Azure Cloud Services</span>
+                  <span className="skill-name">Azure Infrastructure</span>
                   <span className="skill-level-text">85%</span>
                 </div>
-                <div className="skill-progress-terminal">[████████░░]</div>
+                <div className="skill-progress-container">
+                  <div className="skill-progress-bar-fill" style={{ width: "85%" }}></div>
+                </div>
               </div>
               <div className="skill-item">
                 <div className="skill-info">
-                  <span className="skill-name">Docker Containerization</span>
+                  <span className="skill-name">Docker</span>
                   <span className="skill-level-text">90%</span>
                 </div>
-                <div className="skill-progress-terminal">[█████████░]</div>
+                <div className="skill-progress-container">
+                  <div className="skill-progress-bar-fill" style={{ width: "90%" }}></div>
+                </div>
               </div>
               <div className="skill-item">
                 <div className="skill-info">
-                  <span className="skill-name">CI/CD Pipelines (Git)</span>
+                  <span className="skill-name">CI / CD Pipelines</span>
                   <span className="skill-level-text">80%</span>
                 </div>
-                <div className="skill-progress-terminal">[████████░░]</div>
+                <div className="skill-progress-container">
+                  <div className="skill-progress-bar-fill" style={{ width: "80%" }}></div>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Databases & Caching */}
-          <div className="skills-card">
+          <div className="skills-card skills-card-03">
+            <span className="skills-card-number">03</span>
             <h3 className="skills-card-title">
               <Database
                 size={18}
-                className="text-cyan"
                 style={{ marginRight: "8px" }}
               />{" "}
               Databases & Caching
@@ -1638,34 +1673,40 @@ function App() {
             <div className="skill-list">
               <div className="skill-item">
                 <div className="skill-info">
-                  <span className="skill-name">MongoDB (NoSQL)</span>
+                  <span className="skill-name">MongoDB / NoSQL</span>
                   <span className="skill-level-text">90%</span>
                 </div>
-                <div className="skill-progress-terminal">[█████████░]</div>
+                <div className="skill-progress-container">
+                  <div className="skill-progress-bar-fill" style={{ width: "90%" }}></div>
+                </div>
               </div>
               <div className="skill-item">
                 <div className="skill-info">
-                  <span className="skill-name">Redis (Caching Layer)</span>
+                  <span className="skill-name">Redis / Memory Cache</span>
                   <span className="skill-level-text">85%</span>
                 </div>
-                <div className="skill-progress-terminal">[████████░░]</div>
+                <div className="skill-progress-container">
+                  <div className="skill-progress-bar-fill" style={{ width: "85%" }}></div>
+                </div>
               </div>
               <div className="skill-item">
                 <div className="skill-info">
                   <span className="skill-name">Query Optimization</span>
                   <span className="skill-level-text">90%</span>
                 </div>
-                <div className="skill-progress-terminal">[█████████░]</div>
+                <div className="skill-progress-container">
+                  <div className="skill-progress-bar-fill" style={{ width: "90%" }}></div>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Architecture & APIs */}
-          <div className="skills-card">
+          <div className="skills-card skills-card-04">
+            <span className="skills-card-number">04</span>
             <h3 className="skills-card-title">
-              <Server
+              <Network
                 size={18}
-                className="text-cyan"
                 style={{ marginRight: "8px" }}
               />{" "}
               Architecture & APIs
@@ -1676,23 +1717,27 @@ function App() {
                   <span className="skill-name">Microservices Architecture</span>
                   <span className="skill-level-text">95%</span>
                 </div>
-                <div className="skill-progress-terminal">[██████████]</div>
+                <div className="skill-progress-container">
+                  <div className="skill-progress-bar-fill" style={{ width: "95%" }}></div>
+                </div>
               </div>
               <div className="skill-item">
                 <div className="skill-info">
                   <span className="skill-name">RESTful API Design</span>
                   <span className="skill-level-text">90%</span>
                 </div>
-                <div className="skill-progress-terminal">[█████████░]</div>
+                <div className="skill-progress-container">
+                  <div className="skill-progress-bar-fill" style={{ width: "90%" }}></div>
+                </div>
               </div>
               <div className="skill-item">
                 <div className="skill-info">
-                  <span className="skill-name">
-                    System Observability (Logs)
-                  </span>
+                  <span className="skill-name">System Observability</span>
                   <span className="skill-level-text">85%</span>
                 </div>
-                <div className="skill-progress-terminal">[████████░░]</div>
+                <div className="skill-progress-container">
+                  <div className="skill-progress-bar-fill" style={{ width: "85%" }}></div>
+                </div>
               </div>
             </div>
           </div>
