@@ -25,6 +25,7 @@ import {
   FlaskConical,
   CheckCircle2
 } from 'lucide-react';
+import { Analytics } from '@vercel/analytics/react';
 
 const allLogs = [
   { time: '10:01', msg: 'Connection established to Redis:6379', type: 'info' },
@@ -812,6 +813,7 @@ function App() {
           <a href="#">Documentation</a>
         </div>
       </footer>
+      <Analytics />
     </div>
   );
 }
