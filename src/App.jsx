@@ -63,6 +63,7 @@ function App() {
   }, []);
 
   const [activeSection, setActiveSection] = useState("home");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -88,6 +89,16 @@ function App() {
       if (current) {
         setActiveSection(current);
       }
+
+      // Header shadow on scroll
+      const header = document.querySelector(".header");
+      if (header) {
+        if (window.scrollY > 20) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      }
     };
 
     // Initial check
@@ -95,22 +106,24 @@ function App() {
 
     window.addEventListener("scroll", handleScroll);
 
-    // Scroll reveal observer
+    // Scroll reveal observer — handles all reveal variants
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("active");
-            observer.unobserve(entry.target); // Only animate once
+            observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.1 },
+      { threshold: 0.12 },
     );
 
-    document.querySelectorAll(".reveal").forEach((el) => {
-      observer.observe(el);
-    });
+    document
+      .querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-scale")
+      .forEach((el) => {
+        observer.observe(el);
+      });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -133,104 +146,75 @@ function App() {
   return (
     <div className="container" style={{ position: "relative" }}>
       <Analytics />
-      {/* Background Glowing Dots */}
-      <div
-        className="bg-dot"
-        style={{
-          top: "15%",
-          left: "5%",
-          animation: "floatDot 8s ease-in-out infinite",
-        }}
-      ></div>
-      <div
-        className="bg-dot"
-        style={{
-          top: "45%",
-          right: "10%",
-          animation: "floatDot 12s ease-in-out infinite 2s",
-        }}
-      ></div>
-      <div
-        className="bg-dot"
-        style={{
-          top: "75%",
-          left: "15%",
-          animation: "floatDot 9s ease-in-out infinite 1s",
-        }}
-      ></div>
-      <div
-        className="bg-dot"
-        style={{
-          top: "85%",
-          right: "25%",
-          animation: "floatDot 10s ease-in-out infinite 4s",
-        }}
-      ></div>
+
+      {/* Premium Background Orbs */}
+      <div className="bg-orb bg-orb-1" aria-hidden="true"></div>
+      <div className="bg-orb bg-orb-2" aria-hidden="true"></div>
+      <div className="bg-orb bg-orb-3" aria-hidden="true"></div>
 
       {/* Header */}
-      <header className="header flex justify-between items-center">
-        <div
-          className="logo"
-          style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}
-        >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: "28px",
-              height: "28px",
-              background:
-                "linear-gradient(135deg, rgba(0, 229, 255, 0.2), rgba(0, 229, 255, 0.05))",
-              border: "1px solid var(--accent-cyan)",
-              borderRadius: "6px",
-              color: "var(--accent-cyan)",
-              fontWeight: "700",
-              fontSize: "12px",
-              fontFamily: "var(--font-mono)",
-              boxShadow: "0 0 10px rgba(0, 229, 255, 0.2)",
-              letterSpacing: "0.5px",
-            }}
-          >
-            SK
-          </div>
-          Sai Krishna Mateti
+      <header className="header flex justify-between items-center reveal delay-1">
+        <div className="logo">
+          <div className="logo-badge">SK</div>
+          <span className="logo-text">Sai Krishna Mateti</span>
         </div>
-        <nav className="nav-links">
-          <a href="#home" className={activeSection === "home" ? "active" : ""}>
+        <button
+          className={`mobile-nav-toggle ${mobileMenuOpen ? "open" : ""}`}
+          onClick={() => setMobileMenuOpen((prev) => !prev)}
+          aria-expanded={mobileMenuOpen}
+          aria-label="Toggle navigation"
+          type="button"
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+        <nav className={`nav-links ${mobileMenuOpen ? "open" : ""}`}>
+          <a
+            href="#home"
+            className={activeSection === "home" ? "active" : ""}
+            onClick={() => setMobileMenuOpen(false)}
+          >
             Home
           </a>
           <a
             href="#experience"
             className={activeSection === "experience" ? "active" : ""}
+            onClick={() => setMobileMenuOpen(false)}
           >
             Experience
           </a>
           <a
             href="#projects"
             className={activeSection === "projects" ? "active" : ""}
+            onClick={() => setMobileMenuOpen(false)}
           >
             Projects
           </a>
           <a
             href="#skills"
             className={activeSection === "skills" ? "active" : ""}
+            onClick={() => setMobileMenuOpen(false)}
           >
             Skills
           </a>
           <a
             href="#education"
             className={activeSection === "education" ? "active" : ""}
+            onClick={() => setMobileMenuOpen(false)}
           >
             Education
           </a>
         </nav>
-        <button
+        <a
+          href="/SaiKrishna_Mateti_NodeJS_Developer.pdf"
+          download="Sai_Krishna_Mateti_Resume.pdf"
           className="btn btn-secondary"
-          style={{ padding: "0.5rem 1rem" }}
+          style={{ padding: "0.5rem 1rem", marginRight: "25px" }}
         >
           Download CV
-        </button>
+          <Download size={16} className="ml-2" style={{ marginLeft: "8px" }} />
+        </a>
       </header>
 
       {/* Hero Section */}
@@ -251,15 +235,21 @@ function App() {
             and Craft-driven implementation.
           </p>
           <div className="flex gap-4 animate-fade-up delay-3">
-            <button className="btn btn-primary">
+            <a
+              href="/SaiKrishna_Mateti_NodeJS_Developer.pdf"
+              download="Sai_Krishna_Mateti_Resume.pdf"
+              className="btn btn-primary"
+            >
               Download CV{" "}
               <Download
                 size={16}
                 className="ml-2"
                 style={{ marginLeft: "8px" }}
               />
-            </button>
-            <button className="btn btn-secondary">View Projects</button>
+            </a>
+            <a href="#projects" className="btn btn-secondary">
+              View Projects
+            </a>
           </div>
         </div>
 
@@ -302,7 +292,7 @@ function App() {
               </div>
 
               <div className="terminal">
-                <div className="terminal-header">_ system.logs</div>
+                {/* <div className="terminal-header">_ system.logs</div> */}
                 {terminalLogs.map((log, index) => {
                   if (!log) return null;
                   return (
@@ -345,7 +335,7 @@ function App() {
 
       {/* Features & Tech Stack */}
       <section className="features-grid">
-        <div className="card feature-card reveal delay-1">
+        <div className="card feature-card reveal-scale delay-1">
           <Zap className="feature-icon" size={24} />
           <h3 className="feature-title">API Optimization</h3>
           <p className="feature-desc">
@@ -358,34 +348,34 @@ function App() {
           </div>
         </div>
 
-        <div className="card feature-card tech-stack-card reveal delay-2">
+        <div className="card feature-card tech-stack-card reveal-scale delay-2">
           <h3 className="feature-title">Core Tech Stack</h3>
           <p className="feature-desc">
             Industrial-grade tools utilized for building enterprise systems.
           </p>
           <div className="tech-tags">
-            <span className="tech-tag" style={{ borderColor: "#666666" }}>
+            <span className="tech-tag tech-nodejs">
               <Server size={14} color="#68a063" /> Node.js
             </span>
-            <span className="tech-tag" style={{ borderColor: "#666666" }}>
+            <span className="tech-tag tech-mongodb">
               <Database size={14} color="#47A248" /> MongoDB
             </span>
-            <span className="tech-tag" style={{ borderColor: "#666666" }}>
+            <span className="tech-tag tech-redis">
               <Box size={14} color="#DC382D" /> Redis
             </span>
-            <span className="tech-tag" style={{ borderColor: "#666666" }}>
+            <span className="tech-tag tech-docker">
               <LayoutTemplate size={14} color="#2496ED" /> Docker
             </span>
-            <span className="tech-tag" style={{ borderColor: "#666666" }}>
+            <span className="tech-tag tech-cicd">
               <Workflow size={14} color="#F05032" /> CI/CD
             </span>
-            <span className="tech-tag" style={{ borderColor: "#666666" }}>
+            <span className="tech-tag tech-azure">
               <Cloud size={14} color="#0089D6" /> Azure
             </span>
-            <span className="tech-tag" style={{ borderColor: "#666666" }}>
-              <Cpu size={14} color="#aaaaaa" /> Express JS
+            <span className="tech-tag tech-express">
+              <Cpu size={14} color="#18cce0" /> Express JS
             </span>
-            <span className="tech-tag" style={{ borderColor: "#666666" }}>
+            <span className="tech-tag tech-swagger">
               <FileJson size={14} color="#85EA2D" /> Swagger
             </span>
           </div>
@@ -403,7 +393,7 @@ function App() {
           </div>
         </div>
 
-        <div className="card feature-card reveal delay-3">
+        <div className="card feature-card reveal-scale delay-3">
           <ShieldCheck className="feature-icon" size={24} />
           <h3 className="feature-title">Data Integrity</h3>
           <p className="feature-desc">
@@ -421,7 +411,7 @@ function App() {
           </div>
         </div>
 
-        <div className="card feature-card reveal delay-4">
+        <div className="card feature-card reveal-scale delay-4">
           <h3
             className="feature-title"
             style={{
@@ -441,7 +431,7 @@ function App() {
           </p>
         </div>
 
-        <div className="card feature-card reveal delay-5">
+        <div className="card feature-card reveal-scale delay-5">
           <h3
             className="feature-title"
             style={{
@@ -474,7 +464,7 @@ function App() {
 
         <div className="timeline">
           {/* Main Job */}
-          <div className="timeline-item reveal delay-1">
+          <div className="timeline-item reveal-left delay-1">
             <div className="exp-card">
               <div className="exp-card-header">
                 <div>
@@ -623,12 +613,14 @@ function App() {
             display: "grid",
             gridTemplateColumns: "1.2fr 0.8fr",
             gap: "3rem",
-            marginBottom: "5rem",
+            marginBottom: "2rem",
             alignItems: "center",
           }}
         >
           <div className="hero-left">
-            <div className="section-label" style={{ marginBottom: "0.75rem" }}>SYSTEM ARCHITECTURE CASE STUDY</div>
+            <div className="section-label" style={{ marginBottom: "0.75rem" }}>
+              SYSTEM ARCHITECTURE CASE STUDY
+            </div>
             <h1
               className="case-study-title"
               style={{
@@ -691,32 +683,12 @@ function App() {
           </div>
 
           <div className="hero-right" style={{ position: "relative" }}>
-            <div
-              style={{
-                position: "relative",
-                width: "100%",
-                maxWidth: "360px",
-                marginLeft: "auto",
-              }}
-            >
-              <div
-                className="dashboard-visual"
-                style={{
-                  borderRadius: "12px",
-                  overflow: "hidden",
-                  border: "1px solid var(--border-color)",
-                  boxShadow: "0 20px 40px rgba(0,0,0,0.4)",
-                }}
-              >
+            <div className="dashboard-frame">
+              <div className="dashboard-visual dashboard-curved">
                 <img
                   src="/images/ciana-spotlight.png"
                   alt="Ciana Healthcare Dashboard Analytics"
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    display: "block",
-                    opacity: 0.9,
-                  }}
+                  className="dashboard-image"
                 />
               </div>
 
@@ -800,8 +772,7 @@ function App() {
               color: "var(--accent-cyan)",
               opacity: 0.8,
             }}
-          >
-          </div>
+          ></div>
         </div>
 
         {/* Modules Grid */}
@@ -816,7 +787,7 @@ function App() {
         >
           {/* Card 1: Patient Services */}
           <div
-            className="module-card module-card-cyan"
+            className="module-card module-card-cyan-p"
             style={{ position: "relative" }}
           >
             <div
@@ -843,12 +814,12 @@ function App() {
                   style={{ color: "var(--accent-cyan)" }}
                 />
               </div>
-              <div
+              {/* <div
                 className="module-version font-mono text-xs"
                 style={{ color: "var(--text-secondary)" }}
               >
                 v2.4.0
-              </div>
+              </div> */}
             </div>
 
             <div className="module-card-body">
@@ -1560,7 +1531,10 @@ function App() {
       <section className="skills-section reveal delay-1" id="skills">
         <div className="section-label">TECHNICAL CAPABILITIES</div>
         <div className="project-header" style={{ marginBottom: "1.25rem" }}>
-          <h2 className="project-title" style={{ fontSize: "2.5rem", fontWeight: "800" }}>
+          <h2
+            className="project-title"
+            style={{ fontSize: "2.5rem", fontWeight: "800" }}
+          >
             Skills & Shards
             <span
               className="cursor-blink"
@@ -1573,19 +1547,26 @@ function App() {
             </span>
           </h2>
         </div>
-        <p style={{ color: "var(--text-secondary)", marginBottom: "3.5rem", maxWidth: "600px", fontSize: "0.9375rem", lineHeight: "1.6" }}>
-          Systematic breakdown of technical proficiency across the backend stack. Each shard represents a core pillar of architectural integrity and operational excellence.
+        <p
+          style={{
+            color: "var(--text-secondary)",
+            marginBottom: "3.5rem",
+            maxWidth: "600px",
+            fontSize: "0.9375rem",
+            lineHeight: "1.6",
+          }}
+        >
+          Systematic breakdown of technical proficiency across the backend
+          stack. Each shard represents a core pillar of architectural integrity
+          and operational excellence.
         </p>
 
         <div className="skills-grid">
           {/* Languages & Runtimes */}
-          <div className="skills-card skills-card-01">
+          <div className="skills-card skills-card-01 reveal-left delay-1">
             <span className="skills-card-number">01</span>
             <h3 className="skills-card-title">
-              <TerminalSquare
-                size={18}
-                style={{ marginRight: "8px" }}
-              />{" "}
+              <TerminalSquare size={18} style={{ marginRight: "8px" }} />{" "}
               Languages & Runtimes
             </h3>
             <div className="skill-list">
@@ -1595,7 +1576,10 @@ function App() {
                   <span className="skill-level-text">90%</span>
                 </div>
                 <div className="skill-progress-container">
-                  <div className="skill-progress-bar-fill" style={{ width: "90%" }}></div>
+                  <div
+                    className="skill-progress-bar-fill"
+                    style={{ "--bar-width": "90%" }}
+                  ></div>
                 </div>
               </div>
               <div className="skill-item">
@@ -1604,7 +1588,10 @@ function App() {
                   <span className="skill-level-text">95%</span>
                 </div>
                 <div className="skill-progress-container">
-                  <div className="skill-progress-bar-fill" style={{ width: "95%" }}></div>
+                  <div
+                    className="skill-progress-bar-fill"
+                    style={{ "--bar-width": "95%" }}
+                  ></div>
                 </div>
               </div>
               <div className="skill-item">
@@ -1613,21 +1600,20 @@ function App() {
                   <span className="skill-level-text">85%</span>
                 </div>
                 <div className="skill-progress-container">
-                  <div className="skill-progress-bar-fill" style={{ width: "85%" }}></div>
+                  <div
+                    className="skill-progress-bar-fill"
+                    style={{ "--bar-width": "85%" }}
+                  ></div>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Cloud & DevOps */}
-          <div className="skills-card skills-card-02">
+          <div className="skills-card skills-card-02 reveal-right delay-2">
             <span className="skills-card-number">02</span>
             <h3 className="skills-card-title">
-              <Cloud
-                size={18}
-                style={{ marginRight: "8px" }}
-              />{" "}
-              Cloud & DevOps
+              <Cloud size={18} style={{ marginRight: "8px" }} /> Cloud & DevOps
             </h3>
             <div className="skill-list">
               <div className="skill-item">
@@ -1636,7 +1622,10 @@ function App() {
                   <span className="skill-level-text">85%</span>
                 </div>
                 <div className="skill-progress-container">
-                  <div className="skill-progress-bar-fill" style={{ width: "85%" }}></div>
+                  <div
+                    className="skill-progress-bar-fill"
+                    style={{ "--bar-width": "85%" }}
+                  ></div>
                 </div>
               </div>
               <div className="skill-item">
@@ -1645,7 +1634,10 @@ function App() {
                   <span className="skill-level-text">90%</span>
                 </div>
                 <div className="skill-progress-container">
-                  <div className="skill-progress-bar-fill" style={{ width: "90%" }}></div>
+                  <div
+                    className="skill-progress-bar-fill"
+                    style={{ "--bar-width": "90%" }}
+                  ></div>
                 </div>
               </div>
               <div className="skill-item">
@@ -1654,21 +1646,21 @@ function App() {
                   <span className="skill-level-text">80%</span>
                 </div>
                 <div className="skill-progress-container">
-                  <div className="skill-progress-bar-fill" style={{ width: "80%" }}></div>
+                  <div
+                    className="skill-progress-bar-fill"
+                    style={{ "--bar-width": "80%" }}
+                  ></div>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Databases & Caching */}
-          <div className="skills-card skills-card-03">
+          <div className="skills-card skills-card-03 reveal-left delay-3">
             <span className="skills-card-number">03</span>
             <h3 className="skills-card-title">
-              <Database
-                size={18}
-                style={{ marginRight: "8px" }}
-              />{" "}
-              Databases & Caching
+              <Database size={18} style={{ marginRight: "8px" }} /> Databases &
+              Caching
             </h3>
             <div className="skill-list">
               <div className="skill-item">
@@ -1677,7 +1669,10 @@ function App() {
                   <span className="skill-level-text">90%</span>
                 </div>
                 <div className="skill-progress-container">
-                  <div className="skill-progress-bar-fill" style={{ width: "90%" }}></div>
+                  <div
+                    className="skill-progress-bar-fill"
+                    style={{ "--bar-width": "90%" }}
+                  ></div>
                 </div>
               </div>
               <div className="skill-item">
@@ -1686,7 +1681,10 @@ function App() {
                   <span className="skill-level-text">85%</span>
                 </div>
                 <div className="skill-progress-container">
-                  <div className="skill-progress-bar-fill" style={{ width: "85%" }}></div>
+                  <div
+                    className="skill-progress-bar-fill"
+                    style={{ "--bar-width": "85%" }}
+                  ></div>
                 </div>
               </div>
               <div className="skill-item">
@@ -1695,21 +1693,21 @@ function App() {
                   <span className="skill-level-text">90%</span>
                 </div>
                 <div className="skill-progress-container">
-                  <div className="skill-progress-bar-fill" style={{ width: "90%" }}></div>
+                  <div
+                    className="skill-progress-bar-fill"
+                    style={{ "--bar-width": "90%" }}
+                  ></div>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Architecture & APIs */}
-          <div className="skills-card skills-card-04">
+          <div className="skills-card skills-card-04 reveal-right delay-4">
             <span className="skills-card-number">04</span>
             <h3 className="skills-card-title">
-              <Network
-                size={18}
-                style={{ marginRight: "8px" }}
-              />{" "}
-              Architecture & APIs
+              <Network size={18} style={{ marginRight: "8px" }} /> Architecture
+              & APIs
             </h3>
             <div className="skill-list">
               <div className="skill-item">
@@ -1718,7 +1716,10 @@ function App() {
                   <span className="skill-level-text">95%</span>
                 </div>
                 <div className="skill-progress-container">
-                  <div className="skill-progress-bar-fill" style={{ width: "95%" }}></div>
+                  <div
+                    className="skill-progress-bar-fill"
+                    style={{ "--bar-width": "95%" }}
+                  ></div>
                 </div>
               </div>
               <div className="skill-item">
@@ -1727,7 +1728,10 @@ function App() {
                   <span className="skill-level-text">90%</span>
                 </div>
                 <div className="skill-progress-container">
-                  <div className="skill-progress-bar-fill" style={{ width: "90%" }}></div>
+                  <div
+                    className="skill-progress-bar-fill"
+                    style={{ "--bar-width": "90%" }}
+                  ></div>
                 </div>
               </div>
               <div className="skill-item">
@@ -1736,7 +1740,10 @@ function App() {
                   <span className="skill-level-text">85%</span>
                 </div>
                 <div className="skill-progress-container">
-                  <div className="skill-progress-bar-fill" style={{ width: "85%" }}></div>
+                  <div
+                    className="skill-progress-bar-fill"
+                    style={{ "--bar-width": "85%" }}
+                  ></div>
                 </div>
               </div>
             </div>
@@ -1814,7 +1821,7 @@ function App() {
       </section>
 
       {/* Footer */}
-      <footer className="footer">
+      <footer className="footer reveal delay-2">
         <div>
           <div className="text-cyan mb-2" style={{ fontWeight: 600 }}>
             Sai Krishna Mateti
@@ -1822,12 +1829,11 @@ function App() {
           <div>© 2026 SAI KRISHNA MATETI | SYSTEM ARCHITECTED FOR SCALE</div>
         </div>
         <div className="footer-links">
-          <a href="#">LinkedIn</a>
-          <a href="#">Email</a>
-          <a href="#">GitHub</a>
-          <a href="#">Documentation</a>
+          <a href="https://www.linkedin.com/in/saikrishna-mateti">LinkedIn</a>
+          <a href="https://github.com/saikrishna2917">GitHub</a>
         </div>
       </footer>
+      <Analytics />
     </div>
   );
 }
