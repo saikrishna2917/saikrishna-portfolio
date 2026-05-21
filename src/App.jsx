@@ -24,6 +24,11 @@ import {
   PlusSquare,
   FlaskConical,
   CheckCircle2,
+  Mail,
+  MapPin,
+  MessageSquare,
+  Send,
+  Brain,
 } from "lucide-react";
 
 const allLogs = [
@@ -65,6 +70,105 @@ function App() {
   const [activeSection, setActiveSection] = useState("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Contact Form & Simulated Transmission Terminal
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [isSending, setIsSending] = useState(false);
+  const [sendLogs, setSendLogs] = useState([]);
+  const [sendSuccess, setSendSuccess] = useState(false);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.message) return;
+
+    setIsSending(true);
+    setSendLogs([]);
+    setSendSuccess(false);
+
+    const startTime = Date.now();
+    const getElapsed = () => ((Date.now() - startTime) / 1000).toFixed(1) + "s";
+
+    // Play simulated handshakes
+    setTimeout(() => {
+      setSendLogs((prev) => [...prev, { time: getElapsed(), msg: "Initializing Mail Dispatch Service...", type: "system" }]);
+    }, 0);
+
+    setTimeout(() => {
+      setSendLogs((prev) => [...prev, { time: getElapsed(), msg: "Establishing secure TLS 1.3 socket...", type: "auth" }]);
+    }, 500);
+
+    setTimeout(() => {
+      setSendLogs((prev) => [...prev, { time: getElapsed(), msg: "Serializing message payload...", type: "payload" }]);
+    }, 1100);
+
+    setTimeout(() => {
+      setSendLogs((prev) => [...prev, { time: getElapsed(), msg: "Sending HTTP POST request to mail delivery pool...", type: "network" }]);
+    }, 1700);
+
+    // Run the actual API request to Web3Forms
+    setTimeout(async () => {
+      const accessKey = import.meta.env.VITE_WEB3FORMS_KEY || "7edebbfb-448e-462a-a775-bb4d4f82c34c";
+      try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            access_key: accessKey,
+            name: formData.name,
+            email: formData.email,
+            message: formData.message,
+            subject: `New message from your Portfolio`,
+          }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          setSendLogs((prev) => [
+            ...prev,
+            { time: getElapsed(), msg: "Transmission successful! API response: 200 OK.", type: "success" }
+          ]);
+          setIsSending(false);
+          setSendSuccess(true);
+          setFormData({ name: "", email: "", message: "" });
+        } else {
+          const errMsg = data.message || `HTTP ${response.status}`;
+          setSendLogs((prev) => [
+            ...prev,
+            { time: getElapsed(), msg: `Transmission failed! Error: ${errMsg}`, type: "error" }
+          ]);
+          setIsSending(false);
+          setSendSuccess(false);
+        }
+      } catch (err) {
+        setSendLogs((prev) => [
+          ...prev,
+          { time: getElapsed(), msg: `Transmission failed! Network error: ${err.message}`, type: "error" }
+        ]);
+        setIsSending(false);
+        setSendSuccess(false);
+      }
+    }, 2300);
+  };
+
+  useEffect(() => {
+    let timeoutId;
+    if (sendSuccess) {
+      timeoutId = setTimeout(() => {
+        setSendLogs([]);
+        setSendSuccess(false);
+      }, 1500);
+    }
+    return () => clearTimeout(timeoutId);
+  }, [sendSuccess]);
+
   useEffect(() => {
     const handleScroll = () => {
       const sections = [
@@ -73,6 +177,7 @@ function App() {
         "projects",
         "skills",
         "education",
+        "contact",
       ];
       let current = "";
 
@@ -138,6 +243,7 @@ function App() {
       projects: "Projects",
       skills: "Skills",
       education: "Education",
+      contact: "Contact",
     };
     const currentName = sectionNames[activeSection] || "Home";
     document.title = `${currentName} | Sai Krishna Mateti`;
@@ -204,6 +310,13 @@ function App() {
             onClick={() => setMobileMenuOpen(false)}
           >
             Education
+          </a>
+          <a
+            href="#contact"
+            className={activeSection === "contact" ? "active" : ""}
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Contact
           </a>
         </nav>
         <a
@@ -421,10 +534,10 @@ function App() {
       <section className="experience-section" id="experience">
         <div className="exp-header">
           <h2 className="exp-title">Professional Experience</h2>
-          <div className="exp-status">
+          {/* <div className="exp-status">
             <div className="exp-status-label">LATEST STATUS</div>
             <div className="exp-status-value">ACTIVE_DEPLOYMENT</div>
-          </div>
+          </div> */}
         </div>
 
         <div className="timeline">
@@ -490,19 +603,24 @@ function App() {
                     Built event-driven workflows using Azure Service Bus for asynchronous processing, notification dispatch, and background jobs. Integrated Azure Blob Storage for secure medical document storage and Azure NLP for entity extraction.
                   </p>
                   <div className="flex gap-2" style={{ flexWrap: "wrap" }}>
-                    <span className="badge badge-outline">
+                    <span className="badge badge-custom badge-service-bus">
+                      <MessageSquare size={13} />
                       Azure Service Bus
                     </span>
-                    <span className="badge badge-outline">
+                    <span className="badge badge-custom badge-blob">
+                      <Database size={13} />
                       Blob Storage
                     </span>
-                    <span className="badge badge-outline">
+                    <span className="badge badge-custom badge-nlp">
+                      <Brain size={13} />
                       Azure Cognitive NLP
                     </span>
-                    <span className="badge badge-outline">
+                    <span className="badge badge-custom badge-docker-custom">
+                      <LayoutTemplate size={13} />
                       Docker Containerization
                     </span>
-                    <span className="badge badge-outline">
+                    <span className="badge badge-custom badge-github">
+                      <Workflow size={13} />
                       GitHub Actions CI/CD
                     </span>
                   </div>
@@ -543,321 +661,323 @@ function App() {
       <section
         className="project-spotlight reveal delay-1"
         id="projects"
-        style={{ marginBottom: "6rem" }}
+        style={{ marginBottom: "3rem" }}
       >
-        {/* Case Study Hero */}
-        <div className="case-study-hero">
-          <div className="case-study-left">
-            <div className="section-label case-study-label">
-              FEATURED BACKEND CASE STUDY
-            </div>
-            <h1 className="case-study-title">
-              Ciana Healthcare Platform
-            </h1>
-            <p className="case-study-desc">
-              Designed and built secure, modular backend microservices for a multi-role healthcare ecosystem. Developed features for patients, doctors, pharmacies, and labs with secure Azure Blob Storage uploads, Face Scan AI vitals monitoring, PhonePe integrations, and end-to-end RBAC and JWT authentication layers.
-            </p>
-            <div className="case-study-tags">
-              <span className="badge badge-outline tag-microservices">
-                Microservices Architecture
-              </span>
-              <span className="badge badge-outline tag-compliance">
-                HIPAA Compliant Data Boundaries
-              </span>
-              <span className="badge badge-outline tag-cloud">
-                Azure Cloud Integrations
-              </span>
-            </div>
-          </div>
-
-          <div className="case-study-right">
-            <div className="dashboard-frame">
-              <div className="dashboard-visual dashboard-curved">
-                <img
-                  src="/images/ciana-spotlight.png"
-                  alt="Ciana Healthcare Dashboard Analytics"
-                  className="dashboard-image"
-                />
+        <div className="project-spotlight-card">
+          {/* Case Study Hero */}
+          <div className="case-study-hero">
+            <div className="case-study-left">
+              <div className="section-label case-study-label">
+                FEATURED BACKEND CASE STUDY
               </div>
-
-              {/* Floating Uptime Card */}
-              <div className="uptime-card animate-float">
-                <div className="uptime-value text-green">
-                  99.9%
-                </div>
-                <div className="uptime-label">
-                  SYSTEM UPTIME
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Platform Modules Header */}
-        <div className="modules-header">
-          <div>
-            <h2 className="modules-title">Service Domain Architecture</h2>
-            <p className="modules-subtitle">
-              Modular microservices powering patient, doctor, pharmacy, and laboratory workflows.
-            </p>
-          </div>
-          <div className="modules-path font-mono text-cyan"></div>
-        </div>
-
-        {/* Modules Grid */}
-        <div className="modules-grid">
-          {/* Card 1: Patient Services */}
-          <div className="module-card module-card-cyan-p">
-            <div className="module-card-header">
-              <div className="module-icon-container">
-                <Users size={20} className="text-cyan" />
-              </div>
-            </div>
-
-            <div className="module-card-body">
-              <h3 className="module-name">Patient Services</h3>
-              <p className="module-desc">
-                Core service layer managing registrations, wellness tracking, and secure document uploads.
+              <h1 className="case-study-title">
+                Ciana Healthcare Platform
+              </h1>
+              <p className="case-study-desc">
+                Designed and built secure, modular backend microservices for a multi-role healthcare ecosystem. Developed features for patients, doctors, pharmacies, and labs with secure Azure Blob Storage uploads, Face Scan AI vitals monitoring, PhonePe integrations, and end-to-end RBAC and JWT authentication layers.
               </p>
-
-              <ul className="module-bullets">
-                <li className="module-bullet-item">
-                  <CheckCircle2 size={16} className="bullet-icon text-green" />
-                  <span className="bullet-text">
-                    Registration, profile management, appointment booking, and wellness logs.
-                  </span>
-                </li>
-                <li className="module-bullet-item">
-                  <CheckCircle2 size={16} className="bullet-icon text-green" />
-                  <span className="bullet-text">
-                    Integrated Face Scan AI module for touchless health vitals monitoring.
-                  </span>
-                </li>
-                <li className="module-bullet-item">
-                  <CheckCircle2 size={16} className="bullet-icon text-green" />
-                  <span className="bullet-text">
-                    Secure prescription uploads stored safely in Azure Blob Storage.
-                  </span>
-                </li>
-                <li className="module-bullet-item">
-                  <CheckCircle2 size={16} className="bullet-icon text-green" />
-                  <span className="bullet-text">
-                    PhonePe & RazorPay payment gateway integration for packages and consultation fees.
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Card 2: Doctor Workflows */}
-          <div className="module-card module-card-green">
-            <div className="module-card-header">
-              <div className="module-icon-container">
-                <Activity size={20} className="text-green" />
-              </div>
-            </div>
-
-            <div className="module-card-body">
-              <h3 className="module-name">Doctor Workflows</h3>
-              <p className="module-desc">
-                Comprehensive digital workspaces for clinical consultations and secure record handling.
-              </p>
-
-              <ul className="module-bullets">
-                <li className="module-bullet-item">
-                  <CheckCircle2 size={16} className="bullet-icon text-green" />
-                  <span className="bullet-text">
-                    End-to-end appointment lifecycle management and video consultations.
-                  </span>
-                </li>
-                <li className="module-bullet-item">
-                  <CheckCircle2 size={16} className="bullet-icon text-green" />
-                  <span className="bullet-text">
-                    Electronic Medical Record (EMR) generation and digital prescriptions.
-                  </span>
-                </li>
-                <li className="module-bullet-item">
-                  <CheckCircle2 size={16} className="bullet-icon text-green" />
-                  <span className="bullet-text">
-                    Secure data access boundaries based on JWT and role-based access control (RBAC).
-                  </span>
-                </li>
-              </ul>
-
-              <div className="efficiency-footer">
-                <span
-                  style={{
-                    fontSize: "0.6875rem",
-                    color: "var(--text-secondary)",
-                    fontWeight: "600",
-                    fontFamily: "var(--font-mono)",
-                  }}
-                >
-                  ACCESS CONTROL
+              <div className="case-study-tags">
+                <span className="badge badge-outline tag-microservices">
+                  Microservices Architecture
                 </span>
-                <span
-                  style={{
-                    fontSize: "1.125rem",
-                    fontWeight: "800",
-                    color: "var(--accent-green)",
-                  }}
-                >
-                  SECURE RBAC
+                <span className="badge badge-outline tag-compliance">
+                  HIPAA Compliant Data Boundaries
+                </span>
+                <span className="badge badge-outline tag-cloud">
+                  Azure Cloud Integrations
                 </span>
               </div>
             </div>
-          </div>
 
-          {/* Card 3: Pharmacy Module */}
-          <div className="module-card module-card-cyan">
-            <div className="module-card-header">
-              <div className="module-icon-container">
-                <PlusSquare size={20} className="text-cyan" />
-              </div>
-            </div>
-
-            <div className="module-card-body flex-row" style={{ display: "flex", gap: "1.5rem", height: "calc(100% - 68px)" }}>
-              <div className="module-info-left" style={{ flexGrow: 1 }}>
-                <h3 className="module-name">Pharmacy Module</h3>
-                <ul className="module-bullets">
-                  <li className="module-bullet-item">
-                    <CheckCircle2 size={16} className="bullet-icon text-green" />
-                    <span className="bullet-text">
-                      Inventory tracking, real-time medicine search, and billing systems.
-                    </span>
-                  </li>
-                  <li className="module-bullet-item">
-                    <CheckCircle2 size={16} className="bullet-icon text-green" />
-                    <span className="bullet-text">
-                      Automated low-stock detection and purchase order (PO) generation.
-                    </span>
-                  </li>
-                </ul>
-              </div>
-              <div
-                className="module-visual-right flex items-center justify-center"
-                style={{
-                  flexShrink: 0,
-                  width: "120px",
-                  height: "120px",
-                  borderRadius: "8px",
-                  backgroundColor: "#05080f",
-                  border: "1px solid var(--border-color)",
-                  position: "relative",
-                }}
-              >
-                <div className="db-visual">
-                  <Database
-                    size={44}
-                    style={{
-                      color: "var(--accent-cyan)",
-                      filter: "drop-shadow(0 0 10px rgba(0,229,255,0.3))",
-                    }}
+            <div className="case-study-right">
+              <div className="dashboard-frame">
+                <div className="dashboard-visual dashboard-curved">
+                  <img
+                    src="/images/ciana-spotlight.png"
+                    alt="Ciana Healthcare Dashboard Analytics"
+                    className="dashboard-image"
                   />
                 </div>
+
+                {/* Floating Uptime Card */}
+                <div className="uptime-card animate-float">
+                  <div className="uptime-value text-green">
+                    99.9%
+                  </div>
+                  <div className="uptime-label">
+                    SYSTEM UPTIME
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Card 4: Lab Management */}
-          <div className="module-card module-card-orange">
-            <div className="module-card-header">
-              <div className="module-icon-container">
-                <FlaskConical size={20} style={{ color: "var(--accent-orange)" }} />
-              </div>
+          {/* Platform Modules Header */}
+          <div className="modules-header">
+            <div>
+              <h2 className="modules-title">Service Domain Architecture</h2>
+              <p className="modules-subtitle">
+                Modular microservices powering patient, doctor, pharmacy, and laboratory workflows.
+              </p>
             </div>
+            <div className="modules-path font-mono text-cyan"></div>
+          </div>
 
-            <div className="module-card-body flex-row" style={{ display: "flex", gap: "1.5rem", height: "calc(100% - 68px)" }}>
-              <div className="module-info-left" style={{ flexGrow: 1 }}>
-                <h3 className="module-name">Lab Management</h3>
+          {/* Modules Grid */}
+          <div className="modules-grid">
+            {/* Card 1: Patient Services */}
+            <div className="module-card module-card-cyan-p">
+              <div className="module-card-header">
+                <div className="module-icon-container">
+                  <Users size={20} className="text-cyan" />
+                </div>
+              </div>
+
+              <div className="module-card-body">
+                <h3 className="module-name">Patient Services</h3>
+                <p className="module-desc">
+                  Core service layer managing registrations, wellness tracking, and secure document uploads.
+                </p>
+
                 <ul className="module-bullets">
                   <li className="module-bullet-item">
                     <CheckCircle2 size={16} className="bullet-icon text-green" />
                     <span className="bullet-text">
-                      Test scheduling, technician workflows, and real-time status alerts.
+                      Registration, profile management, appointment booking, and wellness logs.
                     </span>
                   </li>
                   <li className="module-bullet-item">
                     <CheckCircle2 size={16} className="bullet-icon text-green" />
                     <span className="bullet-text">
-                      Secure PDF report uploads and signed URL downloads.
+                      Integrated Face Scan AI module for touchless health vitals monitoring.
+                    </span>
+                  </li>
+                  <li className="module-bullet-item">
+                    <CheckCircle2 size={16} className="bullet-icon text-green" />
+                    <span className="bullet-text">
+                      Secure prescription uploads stored safely in Azure Blob Storage.
+                    </span>
+                  </li>
+                  <li className="module-bullet-item">
+                    <CheckCircle2 size={16} className="bullet-icon text-green" />
+                    <span className="bullet-text">
+                      PhonePe & RazorPay payment gateway integration for packages and consultation fees.
                     </span>
                   </li>
                 </ul>
               </div>
-              <div
-                className="module-visual-right flex items-center justify-center"
-                style={{
-                  flexShrink: 0,
-                  width: "120px",
-                  height: "120px",
-                  borderRadius: "8px",
-                  backgroundColor: "#05080f",
-                  border: "1px solid var(--border-color)",
-                  overflow: "hidden",
-                }}
-              >
-                <div className="equalizer">
-                  <div className="bar bar-1"></div>
-                  <div className="bar bar-2"></div>
-                  <div className="bar bar-3"></div>
-                  <div className="bar bar-4"></div>
+            </div>
+
+            {/* Card 2: Doctor Workflows */}
+            <div className="module-card module-card-green">
+              <div className="module-card-header">
+                <div className="module-icon-container">
+                  <Activity size={20} className="text-green" />
+                </div>
+              </div>
+
+              <div className="module-card-body">
+                <h3 className="module-name">Doctor Workflows</h3>
+                <p className="module-desc">
+                  Comprehensive digital workspaces for clinical consultations and secure record handling.
+                </p>
+
+                <ul className="module-bullets">
+                  <li className="module-bullet-item">
+                    <CheckCircle2 size={16} className="bullet-icon text-green" />
+                    <span className="bullet-text">
+                      End-to-end appointment lifecycle management and video consultations.
+                    </span>
+                  </li>
+                  <li className="module-bullet-item">
+                    <CheckCircle2 size={16} className="bullet-icon text-green" />
+                    <span className="bullet-text">
+                      Electronic Medical Record (EMR) generation and digital prescriptions.
+                    </span>
+                  </li>
+                  <li className="module-bullet-item">
+                    <CheckCircle2 size={16} className="bullet-icon text-green" />
+                    <span className="bullet-text">
+                      Secure data access boundaries based on JWT and role-based access control (RBAC).
+                    </span>
+                  </li>
+                </ul>
+
+                <div className="efficiency-footer">
+                  <span
+                    style={{
+                      fontSize: "0.6875rem",
+                      color: "var(--text-secondary)",
+                      fontWeight: "600",
+                      fontFamily: "var(--font-mono)",
+                    }}
+                  >
+                    ACCESS CONTROL
+                  </span>
+                  <span
+                    style={{
+                      fontSize: "1.125rem",
+                      fontWeight: "800",
+                      color: "var(--accent-green)",
+                    }}
+                  >
+                    SECURE RBAC
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 3: Pharmacy Module */}
+            <div className="module-card module-card-cyan">
+              <div className="module-card-header">
+                <div className="module-icon-container">
+                  <PlusSquare size={20} className="text-cyan" />
+                </div>
+              </div>
+
+              <div className="module-card-body flex-row" style={{ display: "flex", gap: "1.5rem", height: "calc(100% - 68px)" }}>
+                <div className="module-info-left" style={{ flexGrow: 1 }}>
+                  <h3 className="module-name">Pharmacy Module</h3>
+                  <ul className="module-bullets">
+                    <li className="module-bullet-item">
+                      <CheckCircle2 size={16} className="bullet-icon text-green" />
+                      <span className="bullet-text">
+                        Inventory tracking, real-time medicine search, and billing systems.
+                      </span>
+                    </li>
+                    <li className="module-bullet-item">
+                      <CheckCircle2 size={16} className="bullet-icon text-green" />
+                      <span className="bullet-text">
+                        Automated low-stock detection and purchase order (PO) generation.
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  className="module-visual-right flex items-center justify-center"
+                  style={{
+                    flexShrink: 0,
+                    width: "120px",
+                    height: "120px",
+                    borderRadius: "8px",
+                    backgroundColor: "#05080f",
+                    border: "1px solid var(--border-color)",
+                    position: "relative",
+                  }}
+                >
+                  <div className="db-visual">
+                    <Database
+                      size={44}
+                      style={{
+                        color: "var(--accent-cyan)",
+                        filter: "drop-shadow(0 0 10px rgba(0,229,255,0.3))",
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 4: Lab Management */}
+            <div className="module-card module-card-orange">
+              <div className="module-card-header">
+                <div className="module-icon-container">
+                  <FlaskConical size={20} style={{ color: "var(--accent-orange)" }} />
+                </div>
+              </div>
+
+              <div className="module-card-body flex-row" style={{ display: "flex", gap: "1.5rem", height: "calc(100% - 68px)" }}>
+                <div className="module-info-left" style={{ flexGrow: 1 }}>
+                  <h3 className="module-name">Lab Management</h3>
+                  <ul className="module-bullets">
+                    <li className="module-bullet-item">
+                      <CheckCircle2 size={16} className="bullet-icon text-green" />
+                      <span className="bullet-text">
+                        Test scheduling, technician workflows, and real-time status alerts.
+                      </span>
+                    </li>
+                    <li className="module-bullet-item">
+                      <CheckCircle2 size={16} className="bullet-icon text-green" />
+                      <span className="bullet-text">
+                        Secure PDF report uploads and signed URL downloads.
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  className="module-visual-right flex items-center justify-center"
+                  style={{
+                    flexShrink: 0,
+                    width: "120px",
+                    height: "120px",
+                    borderRadius: "8px",
+                    backgroundColor: "#05080f",
+                    border: "1px solid var(--border-color)",
+                    overflow: "hidden",
+                  }}
+                >
+                  <div className="equalizer">
+                    <div className="bar bar-1"></div>
+                    <div className="bar bar-2"></div>
+                    <div className="bar bar-3"></div>
+                    <div className="bar bar-4"></div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Integration Architecture */}
-        <div className="integration-architecture">
-          <div className="integration-left">
-            <h2 className="integration-title">
-              Integration Architecture
-            </h2>
+          {/* Integration Architecture */}
+          <div className="integration-architecture">
+            <div className="integration-left">
+              <h2 className="integration-title">
+                Integration Architecture
+              </h2>
 
-            <div className="integration-steps">
-              <div className="integration-step">
-                <div className="step-num font-mono text-cyan">01</div>
-                <div className="step-content">
-                  <h4 className="step-title">Face Scan AI Module</h4>
-                  <p className="step-desc">
-                    Integrated Face Scan AI vitals monitoring module for touchless tracking of patient health metrics.
-                  </p>
+              <div className="integration-steps">
+                <div className="integration-step">
+                  <div className="step-num font-mono text-cyan">01</div>
+                  <div className="step-content">
+                    <h4 className="step-title">Face Scan AI Module</h4>
+                    <p className="step-desc">
+                      Integrated Face Scan AI vitals monitoring module for touchless tracking of patient health metrics.
+                    </p>
+                  </div>
                 </div>
-              </div>
 
-              <div className="integration-step">
-                <div className="step-num font-mono text-cyan">02</div>
-                <div className="step-content">
-                  <h4 className="step-title">PhonePe & RazorPay Payment Gateway</h4>
-                  <p className="step-desc">
-                    Integrated PhonePe & RazorPay payment gateway to facilitate seamless transactions for healthcare packages and consultations.
-                  </p>
+                <div className="integration-step">
+                  <div className="step-num font-mono text-cyan">02</div>
+                  <div className="step-content">
+                    <h4 className="step-title">PhonePe & RazorPay Payment Gateway</h4>
+                    <p className="step-desc">
+                      Integrated PhonePe & RazorPay payment gateway to facilitate seamless transactions for healthcare packages and consultations.
+                    </p>
+                  </div>
                 </div>
-              </div>
 
-              <div className="integration-step">
-                <div className="step-num font-mono text-cyan">03</div>
-                <div className="step-content">
-                  <h4 className="step-title">Azure Blob Storage & Secure Downloads</h4>
-                  <p className="step-desc">
-                    Configured secure prescription uploads using Azure Blob Storage and generated secure signed URLs for lab report downloads.
-                  </p>
+                <div className="integration-step">
+                  <div className="step-num font-mono text-cyan">03</div>
+                  <div className="step-content">
+                    <h4 className="step-title">Azure Blob Storage & Secure Downloads</h4>
+                    <p className="step-desc">
+                      Configured secure prescription uploads using Azure Blob Storage and generated secure signed URLs for lab report downloads.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="integration-right">
-            <div className="network-visual">
-              <img
-                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80"
-                alt="Server network cables and integration architecture"
-                className="network-image"
-              />
-              <div className="network-overlay-dot dot-1"></div>
-              <div className="network-overlay-dot dot-2"></div>
-              <div className="network-overlay-dot dot-3"></div>
+            <div className="integration-right">
+              <div className="network-visual">
+                <img
+                  src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80"
+                  alt="Server network cables and integration architecture"
+                  className="network-image"
+                />
+                <div className="network-overlay-dot dot-1"></div>
+                <div className="network-overlay-dot dot-2"></div>
+                <div className="network-overlay-dot dot-3"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -1095,63 +1215,254 @@ function App() {
         </div>
 
         <div className="education-list">
-          {/* Degree */}
+          {/* B.Tech */}
           <div className="education-card">
             <div className="education-details">
               <h3 className="education-degree">
                 Bachelor of Technology in Computer Science
               </h3>
               <div className="education-school">
-                Jawaharlal Nehru Technological University
+                SVS Group of Institutes, Hanamkonda, Telangana
               </div>
               <div className="education-meta">
-                <span>TERM: 2017 — 2021</span>
+                <span>TERM: 2017 — 2020</span>
                 <span>MAJOR: COMPUTER SCIENCE & ENGINEERING</span>
               </div>
             </div>
-            <div className="education-card-terminal">
-              <div className="terminal-line">
-                <span className="text-cyan">&gt; FETCH</span> degree_data
+            <div className="education-stats-panel">
+              <div className="education-stat-item">
+                <span className="education-stat-label">GPA</span>
+                <span className="education-stat-value">7.0 / 10.0</span>
               </div>
-              <div className="terminal-line">
-                <span className="text-green">STATUS</span>:
-                COMPLETED_SUCCESSFULLY
-              </div>
-              <div className="terminal-line">
-                <span className="text-green">GPA</span>: 8.2 / 10.0
-              </div>
-              <div className="terminal-line">
-                <span className="text-green">CREDENTIAL</span>: SKM-BTECH-2021
+              <div className="education-stat-divider"></div>
+              <div className="education-stat-item">
+                <span className="education-stat-label">LOCATION</span>
+                <span className="education-stat-value">Hanamkonda, TS</span>
               </div>
             </div>
           </div>
 
-          {/* Certifications */}
+          {/* Diploma */}
           <div className="education-card">
             <div className="education-details">
               <h3 className="education-degree">
-                Azure Solutions Architect & Developer
+                Diploma in Computer Engineering
               </h3>
-              <div className="education-school">Microsoft Certification</div>
+              <div className="education-school">
+                Government Polytechnic College, Warangal, Telangana
+              </div>
               <div className="education-meta">
-                <span>TERM: 2022</span>
-                <span>FOCUS: ENTERPRISE CLOUD ARCHITECTURE</span>
+                <span>TERM: 2014 — 2017</span>
+                <span>MAJOR: COMPUTER ENGINEERING</span>
               </div>
             </div>
-            <div className="education-card-terminal">
-              <div className="terminal-line">
-                <span className="text-cyan">&gt; VERIFY</span> microsoft_certs
+            <div className="education-stats-panel">
+              <div className="education-stat-item">
+                <span className="education-stat-label">PERCENTAGE</span>
+                <span className="education-stat-value">70.5 %</span>
               </div>
-              <div className="terminal-line">
-                <span className="text-green">STATUS</span>: ACTIVE
-              </div>
-              <div className="terminal-line">
-                <span className="text-green">EXAMS</span>: AZ-204, AZ-305
-              </div>
-              <div className="terminal-line">
-                <span className="text-green">PROVIDER</span>: MICROSOFT_CORP
+              <div className="education-stat-divider"></div>
+              <div className="education-stat-item">
+                <span className="education-stat-label">LOCATION</span>
+                <span className="education-stat-value">Warangal, TS</span>
               </div>
             </div>
+          </div>
+
+          {/* SSC */}
+          <div className="education-card">
+            <div className="education-details">
+              <h3 className="education-degree">
+                Secondary School Certificate (SSC)
+              </h3>
+              <div className="education-school">
+                Sujatha Vidyanikethan High School, Hasanparthy, Hanamkonda, Telangana
+              </div>
+              <div className="education-meta">
+                <span>TERM: 2004 — 2014</span>
+                <span>FOCUS: GENERAL ACADEMICS</span>
+              </div>
+            </div>
+            <div className="education-stats-panel">
+              <div className="education-stat-item">
+                <span className="education-stat-label">GPA</span>
+                <span className="education-stat-value">9.5 / 10.0</span>
+              </div>
+              <div className="education-stat-divider"></div>
+              <div className="education-stat-item">
+                <span className="education-stat-label">LOCATION</span>
+                <span className="education-stat-value">Hasanparthy, TS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="contact-section reveal delay-1" id="contact">
+        <div className="project-header" style={{ marginBottom: "2.5rem" }}>
+          <h2 className="project-title">GET IN TOUCH</h2>
+        </div>
+
+        <div className="contact-grid">
+          {/* Contact Details Card */}
+          <div className="contact-info-card">
+            <div className="contact-method">
+              <div className="contact-icon-wrap">
+                <Network size={20} color="var(--accent-cyan)" />
+              </div>
+              <div className="contact-text">
+                <span className="contact-label">Contact</span>
+                +91 9948262033
+              </div>
+            </div>
+            <div className="contact-method">
+
+              <div className="contact-icon-wrap">
+                <Mail size={20} color="var(--accent-cyan)" />
+              </div>
+              <div className="contact-text">
+                <span className="contact-label">Email</span>
+                <a href="mailto:saikrishna6800@gmail.com" className="contact-value">
+                  saikrishna6800@gmail.com
+                </a>
+              </div>
+            </div>
+
+            <div className="contact-method">
+              <div className="contact-icon-wrap">
+                <Users size={20} color="var(--accent-cyan)" />
+              </div>
+              <div className="contact-text">
+                <span className="contact-label">LinkedIn</span>
+                <a
+                  href="https://www.linkedin.com/in/saikrishna-mateti"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="contact-value"
+                >
+                  linkedin.com/in/saikrishna-mateti
+                </a>
+              </div>
+            </div>
+
+
+          </div>
+
+          {/* Contact Form or Transmission Terminal Card */}
+          <div className="contact-form-container">
+            {!isSending && !sendLogs.length ? (
+              <form onSubmit={handleFormSubmit} className="contact-form">
+                <div className="form-group">
+                  <label htmlFor="form-name">Sender Name</label>
+                  <input
+                    type="text"
+                    id="form-name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder="Enter your name"
+                    className="form-input"
+                    required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="form-email">Sender Email</label>
+                  <input
+                    type="email"
+                    id="form-email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="Enter your email address"
+                    className="form-input"
+                    required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="form-message">Message Payload</label>
+                  <textarea
+                    id="form-message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    placeholder="Type your message here..."
+                    className="form-input"
+                    required
+                  />
+                </div>
+
+                <button type="submit" className="btn-submit">
+                  Dispatch Message
+                  <Send size={14} />
+                </button>
+              </form>
+            ) : (
+              <div className="contact-terminal-overlay">
+                <div className="contact-terminal-logs">
+                  <div className="contact-terminal-line">
+                    <span className="log-time">[system]</span>
+                    <span style={{ color: "var(--accent-cyan)" }}>
+                      DISPATCHING CORRESPONDENCE PAYLOAD...
+                    </span>
+                  </div>
+                  {sendLogs.map((log, index) => (
+                    <div
+                      key={index}
+                      className={`contact-terminal-line ${log.type === "success"
+                        ? "success-msg"
+                        : log.type === "error"
+                          ? "error-msg"
+                          : ""
+                        }`}
+                    >
+                      <span className="log-time">[{log.time}]</span>
+                      <span>{log.msg}</span>
+                    </div>
+                  ))}
+                  {isSending && (
+                    <div className="contact-terminal-line mt-2 flex items-center">
+                      <span className="text-cyan">gateway@skm:~$</span>
+                      <span
+                        className="cursor-blink"
+                        style={{
+                          width: "6px",
+                          height: "12px",
+                          backgroundColor: "var(--accent-cyan)",
+                          display: "inline-block",
+                          marginLeft: "6px",
+                          animation: "blink 1s step-end infinite",
+                        }}
+                      ></span>
+                    </div>
+                  )}
+                </div>
+                {!isSending && sendLogs.length > 0 && (
+                  <div className="contact-terminal-footer">
+                    <span style={{
+                      color: sendSuccess ? "var(--accent-green)" : "var(--accent-orange)",
+                      fontSize: "0.75rem",
+                      fontFamily: "var(--font-mono)"
+                    }}>
+                      STATUS: {sendSuccess ? "TRANSMITTED_OK" : "TRANSMISSION_FAILED"}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSendLogs([]);
+                        setSendSuccess(false);
+                      }}
+                      className="btn-submit"
+                      style={{ padding: "0.4rem 0.8rem", fontSize: "0.7rem", marginTop: 0 }}
+                    >
+                      Reset Console
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </section>
