@@ -560,6 +560,9 @@ function App() {
             <span className="tech-tag tech-swagger">
               <FileJson size={13} color="#85EA2D" /> Swagger
             </span>
+            <span className="tech-tag tech-swagger">
+              <FileJson size={13} color="#2deacbff" /> ReactJS
+            </span>
           </div>
           {/* Decorative background icon */}
           <div
