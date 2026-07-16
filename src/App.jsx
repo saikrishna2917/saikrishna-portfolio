@@ -71,7 +71,11 @@ function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Contact Form & Simulated Transmission Terminal
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
   const [isSending, setIsSending] = useState(false);
   const [sendLogs, setSendLogs] = useState([]);
   const [sendSuccess, setSendSuccess] = useState(false);
@@ -94,24 +98,54 @@ function App() {
 
     // Play simulated handshakes
     setTimeout(() => {
-      setSendLogs((prev) => [...prev, { time: getElapsed(), msg: "Initializing Mail Dispatch Service...", type: "system" }]);
+      setSendLogs((prev) => [
+        ...prev,
+        {
+          time: getElapsed(),
+          msg: "Initializing Mail Dispatch Service...",
+          type: "system",
+        },
+      ]);
     }, 0);
 
     setTimeout(() => {
-      setSendLogs((prev) => [...prev, { time: getElapsed(), msg: "Establishing secure TLS 1.3 socket...", type: "auth" }]);
+      setSendLogs((prev) => [
+        ...prev,
+        {
+          time: getElapsed(),
+          msg: "Establishing secure TLS 1.3 socket...",
+          type: "auth",
+        },
+      ]);
     }, 500);
 
     setTimeout(() => {
-      setSendLogs((prev) => [...prev, { time: getElapsed(), msg: "Serializing message payload...", type: "payload" }]);
+      setSendLogs((prev) => [
+        ...prev,
+        {
+          time: getElapsed(),
+          msg: "Serializing message payload...",
+          type: "payload",
+        },
+      ]);
     }, 1100);
 
     setTimeout(() => {
-      setSendLogs((prev) => [...prev, { time: getElapsed(), msg: "Sending HTTP POST request to mail delivery pool...", type: "network" }]);
+      setSendLogs((prev) => [
+        ...prev,
+        {
+          time: getElapsed(),
+          msg: "Sending HTTP POST request to mail delivery pool...",
+          type: "network",
+        },
+      ]);
     }, 1700);
 
     // Run the actual API request to Web3Forms
     setTimeout(async () => {
-      const accessKey = import.meta.env.VITE_WEB3FORMS_KEY || "7edebbfb-448e-462a-a775-bb4d4f82c34c";
+      const accessKey =
+        import.meta.env.VITE_WEB3FORMS_KEY ||
+        "7edebbfb-448e-462a-a775-bb4d4f82c34c";
       try {
         const response = await fetch("https://api.web3forms.com/submit", {
           method: "POST",
@@ -133,7 +167,11 @@ function App() {
         if (response.ok && data.success) {
           setSendLogs((prev) => [
             ...prev,
-            { time: getElapsed(), msg: "Transmission successful! API response: 200 OK.", type: "success" }
+            {
+              time: getElapsed(),
+              msg: "Transmission successful! API response: 200 OK.",
+              type: "success",
+            },
           ]);
           setIsSending(false);
           setSendSuccess(true);
@@ -142,7 +180,11 @@ function App() {
           const errMsg = data.message || `HTTP ${response.status}`;
           setSendLogs((prev) => [
             ...prev,
-            { time: getElapsed(), msg: `Transmission failed! Error: ${errMsg}`, type: "error" }
+            {
+              time: getElapsed(),
+              msg: `Transmission failed! Error: ${errMsg}`,
+              type: "error",
+            },
           ]);
           setIsSending(false);
           setSendSuccess(false);
@@ -150,7 +192,11 @@ function App() {
       } catch (err) {
         setSendLogs((prev) => [
           ...prev,
-          { time: getElapsed(), msg: `Transmission failed! Network error: ${err.message}`, type: "error" }
+          {
+            time: getElapsed(),
+            msg: `Transmission failed! Network error: ${err.message}`,
+            type: "error",
+          },
         ]);
         setIsSending(false);
         setSendSuccess(false);
@@ -320,7 +366,7 @@ function App() {
           </a>
         </nav>
         <a
-          href="/SaiKrishna_Mateti_NodeJS_Developer.pdf"
+          href="/Mateti_Sai_Krishna_NodeJS_Developer.pdf"
           download="Sai_Krishna_Mateti_Resume.pdf"
           className="btn btn-secondary"
           style={{ padding: "0.5rem 1rem", marginRight: "25px" }}
@@ -342,11 +388,22 @@ function App() {
             <span className="text-cyan">Backend Engineer</span>
           </h1>
           <p className="animate-fade-up delay-2">
-            Backend Engineer with <strong style={{ color: "var(--accent-cyan)" }}>4.7 years</strong> of experience designing scalable RESTful APIs and microservices in the <strong style={{ color: "var(--accent-cyan)" }}>healthcare domain</strong> using Node.js, Express.js, MongoDB, Redis &amp; Docker. Strong expertise in API security (JWT, OAuth2), cloud integrations, performance optimization, and event-driven architectures — with a proven track record in OCR, NLP, payments, scheduling, and notifications.
+            Backend Engineer with{" "}
+            <strong style={{ color: "var(--accent-cyan)" }}>4.9+ years</strong>{" "}
+            of experience designing scalable RESTful APIs and microservices in
+            the{" "}
+            <strong style={{ color: "var(--accent-cyan)" }}>
+              healthcare domain
+            </strong>{" "}
+            using Node.js, Express.js, MongoDB, Redis &amp; Docker. Strong
+            expertise in API security (JWT, OAuth2), cloud integrations,
+            performance optimization, and event-driven architectures — with a
+            proven track record in OCR, NLP, payments, scheduling, and
+            notifications.
           </p>
           <div className="flex gap-4 animate-fade-up delay-3">
             <a
-              href="/SaiKrishna_Mateti_NodeJS_Developer.pdf"
+              href="/Mateti_Sai_Krishna_NodeJS_Developer.pdf"
               download="Sai_Krishna_Mateti_Resume.pdf"
               className="btn btn-primary"
             >
@@ -445,7 +502,6 @@ function App() {
 
       {/* Features & Tech Stack */}
       <section className="features-grid">
-
         {/* API Optimization */}
         <div className="feature-card reveal-scale delay-1">
           <div className="feature-icon-wrap">
@@ -453,8 +509,8 @@ function App() {
           </div>
           <h3 className="feature-title">API Optimization</h3>
           <p className="feature-desc">
-            Improved average API response time using Redis caching, query optimization,
-            and compound database indexing.
+            Improved average API response time using Redis caching, query
+            optimization, and compound database indexing.
           </p>
           <div>
             <div className="feature-stat">~50%</div>
@@ -464,70 +520,139 @@ function App() {
 
         {/* Core Tech Stack — spans 2 cols */}
         <div className="feature-card tech-stack-card reveal-scale delay-2">
-          <div className="feature-icon-wrap" style={{ background: "rgba(0,229,255,0.12)", borderColor: "rgba(0,229,255,0.35)" }}>
+          <div
+            className="feature-icon-wrap"
+            style={{
+              background: "rgba(0,229,255,0.12)",
+              borderColor: "rgba(0,229,255,0.35)",
+            }}
+          >
             <Server size={20} color="var(--accent-cyan)" />
           </div>
           <h3 className="feature-title">Core Tech Stack</h3>
           <p className="feature-desc">
-            Industrial-grade technologies powering cloud-native healthcare microservices,
-            secure multi-tenant portals, and real-time processing.
+            Industrial-grade technologies powering cloud-native healthcare
+            microservices, secure multi-tenant portals, and real-time
+            processing.
           </p>
           <div className="tech-tags">
-            <span className="tech-tag tech-nodejs"><Server size={13} color="#68a063" /> Node.js</span>
-            <span className="tech-tag tech-mongodb"><Database size={13} color="#47A248" /> MongoDB</span>
-            <span className="tech-tag tech-redis"><Box size={13} color="#DC382D" /> Redis</span>
-            <span className="tech-tag tech-docker"><LayoutTemplate size={13} color="#2496ED" /> Docker</span>
-            <span className="tech-tag tech-cicd"><Workflow size={13} color="#ab58f6" /> CI/CD</span>
-            <span className="tech-tag tech-azure"><Cloud size={13} color="#0089D6" /> Azure</span>
-            <span className="tech-tag tech-express"><Cpu size={13} color="#18cce0" /> Express JS</span>
-            <span className="tech-tag tech-swagger"><FileJson size={13} color="#85EA2D" /> Swagger</span>
+            <span className="tech-tag tech-nodejs">
+              <Server size={13} color="#68a063" /> Node.js
+            </span>
+            <span className="tech-tag tech-mongodb">
+              <Database size={13} color="#47A248" /> MongoDB
+            </span>
+            <span className="tech-tag tech-redis">
+              <Box size={13} color="#DC382D" /> Redis
+            </span>
+            <span className="tech-tag tech-docker">
+              <LayoutTemplate size={13} color="#2496ED" /> Docker
+            </span>
+            <span className="tech-tag tech-cicd">
+              <Workflow size={13} color="#ab58f6" /> CI/CD
+            </span>
+            <span className="tech-tag tech-azure">
+              <Cloud size={13} color="#0089D6" /> Azure
+            </span>
+            <span className="tech-tag tech-express">
+              <Cpu size={13} color="#18cce0" /> Express JS
+            </span>
+            <span className="tech-tag tech-swagger">
+              <FileJson size={13} color="#85EA2D" /> Swagger
+            </span>
+            <span className="tech-tag tech-swagger">
+              <FileJson size={13} color="#2deacbff" /> ReactJS
+            </span>
           </div>
           {/* Decorative background icon */}
-          <div style={{ position: "absolute", right: "-20px", bottom: "-20px", opacity: 0.04, transform: "rotate(-15deg)", pointerEvents: "none" }}>
+          <div
+            style={{
+              position: "absolute",
+              right: "-20px",
+              bottom: "-20px",
+              opacity: 0.04,
+              transform: "rotate(-15deg)",
+              pointerEvents: "none",
+            }}
+          >
             <Server size={160} />
           </div>
         </div>
 
         {/* Environment Parity */}
         <div className="feature-card reveal-scale delay-3">
-          <div className="feature-icon-wrap" style={{ background: "rgba(63,185,80,0.08)", borderColor: "rgba(63,185,80,0.25)" }}>
+          <div
+            className="feature-icon-wrap"
+            style={{
+              background: "rgba(63,185,80,0.08)",
+              borderColor: "rgba(63,185,80,0.25)",
+            }}
+          >
             <ShieldCheck size={20} color="var(--accent-green)" />
           </div>
           <h3 className="feature-title">Environment Parity</h3>
           <p className="feature-desc">
-            Standardized deployment workflows by containerizing microservices with Docker,
-            eliminating environment-related issues.
+            Standardized deployment workflows by containerizing microservices
+            with Docker, eliminating environment-related issues.
           </p>
           <div>
-            <div className="feature-stat" style={{ background: "linear-gradient(135deg, #e6edf3, #00e5ff)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>99.9%</div>
-            <div className="feature-stat-label">PARITY ACROSS QA, STAGE &amp; PROD</div>
+            <div
+              className="feature-stat"
+              style={{
+                background: "linear-gradient(135deg, #e6edf3, #00e5ff)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              99.9%
+            </div>
+            <div className="feature-stat-label">
+              PARITY ACROSS QA, STAGE &amp; PROD
+            </div>
           </div>
         </div>
 
         {/* Security & Access Boundaries */}
         <div className="feature-card reveal-scale delay-4">
-          <div className="feature-icon-wrap" style={{ background: "rgba(0,229,255,0.06)", borderColor: "rgba(0,229,255,0.18)" }}>
+          <div
+            className="feature-icon-wrap"
+            style={{
+              background: "rgba(0,229,255,0.06)",
+              borderColor: "rgba(0,229,255,0.18)",
+            }}
+          >
             <TerminalSquare size={20} color="var(--accent-cyan)" />
           </div>
-          <h3 className="feature-title" style={{ color: "var(--accent-cyan)" }}>Security &amp; Boundaries</h3>
+          <h3 className="feature-title" style={{ color: "var(--accent-cyan)" }}>
+            Security &amp; Boundaries
+          </h3>
           <p className="feature-desc">
-            Implemented JWT/OAuth2 authentication, role-based access control (RBAC),
-            and data boundaries to secure patient and doctor medical records.
+            Implemented JWT/OAuth2 authentication, role-based access control
+            (RBAC), and data boundaries to secure patient and doctor medical
+            records.
           </p>
         </div>
 
         {/* Experience Trail */}
         <div className="feature-card reveal-scale delay-5">
-          <div className="feature-icon-wrap" style={{ background: "rgba(255,189,46,0.08)", borderColor: "rgba(255,189,46,0.25)" }}>
+          <div
+            className="feature-icon-wrap"
+            style={{
+              background: "rgba(255,189,46,0.08)",
+              borderColor: "rgba(255,189,46,0.25)",
+            }}
+          >
             <Award size={20} color="#ffbd2e" />
           </div>
-          <h3 className="feature-title" style={{ color: "#ffbd2e" }}>Experience Trail</h3>
+          <h3 className="feature-title" style={{ color: "#ffbd2e" }}>
+            Experience Trail
+          </h3>
           <p className="feature-desc">
-            Software Engineer L3 at Archents IT Pvt Ltd. Focused on designing robust, high-performance APIs,
-            integrations (OCR, NLP, payments), and event-driven healthcare workflows.
+            Software Engineer L3 at Archents IT Pvt Ltd. Focused on designing
+            robust, high-performance APIs, integrations (OCR, NLP, payments),
+            and event-driven healthcare workflows.
           </p>
         </div>
-
       </section>
 
       {/* Professional Experience Section */}
@@ -555,37 +680,49 @@ function App() {
               <div className="exp-grid">
                 <div className="exp-grid-item">
                   <div className="exp-grid-title">
-                    <Target size={14} color="var(--accent-cyan)" /> Scalable RESTful APIs
+                    <Target size={14} color="var(--accent-cyan)" /> Scalable
+                    RESTful APIs
                   </div>
                   <p className="exp-grid-desc">
-                    Designed and implemented high-performance endpoints using Node.js and Express.js for a cloud-native healthcare platform serving patients, doctors, pharmacies, and labs.
+                    Designed and implemented high-performance endpoints using
+                    Node.js and Express.js for a cloud-native healthcare
+                    platform serving patients, doctors, pharmacies, and labs.
                   </p>
                 </div>
 
                 <div className="exp-grid-item">
                   <div className="exp-grid-title">
-                    <Network size={14} color="var(--accent-cyan)" /> Secure Microservices
+                    <Network size={14} color="var(--accent-cyan)" /> Secure
+                    Microservices
                   </div>
                   <p className="exp-grid-desc">
-                    Developed microservices and modular backend components with secure inter-service communication and high-throughput reliability.
+                    Developed microservices and modular backend components with
+                    secure inter-service communication and high-throughput
+                    reliability.
                   </p>
                 </div>
 
                 <div className="exp-grid-item">
                   <div className="exp-grid-title">
-                    <Database size={14} color="var(--accent-cyan)" /> MongoDB Pipelines
+                    <Database size={14} color="var(--accent-cyan)" /> MongoDB
+                    Pipelines
                   </div>
                   <p className="exp-grid-desc">
-                    Modeled high-performance schemas, created compound indexes, and built multi-stage aggregation pipelines to support transactional workflows.
+                    Modeled high-performance schemas, created compound indexes,
+                    and built multi-stage aggregation pipelines to support
+                    transactional workflows.
                   </p>
                 </div>
 
                 <div className="exp-grid-item">
                   <div className="exp-grid-title">
-                    <Lock size={14} color="var(--accent-cyan)" /> Identity &amp; Auth
+                    <Lock size={14} color="var(--accent-cyan)" /> Identity &amp;
+                    Auth
                   </div>
                   <p className="exp-grid-desc">
-                    Implemented stateless JWT/OAuth2 authentication, role-based access control (RBAC), and API versioning to secure multi-tenant healthcare applications.
+                    Implemented stateless JWT/OAuth2 authentication, role-based
+                    access control (RBAC), and API versioning to secure
+                    multi-tenant healthcare applications.
                   </p>
                 </div>
 
@@ -597,10 +734,18 @@ function App() {
                   }}
                 >
                   <div className="exp-grid-title">
-                    <Cloud size={14} color="var(--accent-cyan)" /> Cloud &amp; Asynchronous Workflows
+                    <Cloud size={14} color="var(--accent-cyan)" /> Cloud &amp;
+                    Asynchronous Workflows
                   </div>
-                  <p className="exp-grid-desc" style={{ marginBottom: "0.75rem" }}>
-                    Built event-driven workflows using Azure Service Bus for asynchronous processing, notification dispatch, and background jobs. Integrated Azure Blob Storage for secure medical document storage and Azure NLP for entity extraction.
+                  <p
+                    className="exp-grid-desc"
+                    style={{ marginBottom: "0.75rem" }}
+                  >
+                    Built event-driven workflows using Azure Service Bus for
+                    asynchronous processing, notification dispatch, and
+                    background jobs. Integrated Azure Blob Storage for secure
+                    medical document storage and Azure NLP for entity
+                    extraction.
                   </p>
                   <div className="flex gap-2" style={{ flexWrap: "wrap" }}>
                     <span className="badge badge-custom badge-service-bus">
@@ -629,25 +774,32 @@ function App() {
 
               <div className="exp-achievements">
                 <h4 className="achievements-title">
-                  <Trophy size={18} color="var(--accent-green)" /> Key Achievements
+                  <Trophy size={18} color="var(--accent-green)" /> Key
+                  Achievements
                 </h4>
                 <div className="achievement-list">
                   <div className="achievement-item">
                     <div className="achievement-badge">~50%</div>
                     <div className="achievement-text">
-                      Improved average API response time by <strong>~50%</strong> using Redis caching, query optimization, and compound database indexing.
+                      Improved average API response time by{" "}
+                      <strong>~50%</strong> using Redis caching, query
+                      optimization, and compound database indexing.
                     </div>
                   </div>
                   <div className="achievement-item">
                     <div className="achievement-badge">Docker</div>
                     <div className="achievement-text">
-                      Standardized deployments by <strong>Dockerizing microservices</strong>, achieving environment consistency and eliminating deployment issues.
+                      Standardized deployments by{" "}
+                      <strong>Dockerizing microservices</strong>, achieving
+                      environment consistency and eliminating deployment issues.
                     </div>
                   </div>
                   <div className="achievement-item">
                     <div className="achievement-badge">99.9%</div>
                     <div className="achievement-text">
-                      Implemented automated backup, logging, and monitoring pipelines, enhancing <strong>system reliability</strong> and incident response.
+                      Implemented automated backup, logging, and monitoring
+                      pipelines, enhancing <strong>system reliability</strong>{" "}
+                      and incident response.
                     </div>
                   </div>
                 </div>
@@ -670,11 +822,13 @@ function App() {
               <div className="section-label case-study-label">
                 FEATURED BACKEND CASE STUDY
               </div>
-              <h1 className="case-study-title">
-                Ciana Healthcare Platform
-              </h1>
+              <h1 className="case-study-title">Ciana Healthcare Platform</h1>
               <p className="case-study-desc">
-                Designed and built secure, modular backend microservices for a multi-role healthcare ecosystem. Developed features for patients, doctors, pharmacies, and labs with secure Azure Blob Storage uploads, Face Scan AI vitals monitoring, PhonePe integrations, and end-to-end RBAC and JWT authentication layers.
+                Designed and built secure, modular backend microservices for a
+                multi-role healthcare ecosystem. Developed features for
+                patients, doctors, pharmacies, and labs with secure Azure Blob
+                Storage uploads, Face Scan AI vitals monitoring, PhonePe
+                integrations, and end-to-end RBAC and JWT authentication layers.
               </p>
               <div className="case-study-tags">
                 <span className="badge badge-outline tag-microservices">
@@ -701,12 +855,8 @@ function App() {
 
                 {/* Floating Uptime Card */}
                 <div className="uptime-card animate-float">
-                  <div className="uptime-value text-green">
-                    99.9%
-                  </div>
-                  <div className="uptime-label">
-                    SYSTEM UPTIME
-                  </div>
+                  <div className="uptime-value text-green">99.9%</div>
+                  <div className="uptime-label">SYSTEM UPTIME</div>
                 </div>
               </div>
             </div>
@@ -717,7 +867,8 @@ function App() {
             <div>
               <h2 className="modules-title">Service Domain Architecture</h2>
               <p className="modules-subtitle">
-                Modular microservices powering patient, doctor, pharmacy, and laboratory workflows.
+                Modular microservices powering patient, doctor, pharmacy, and
+                laboratory workflows.
               </p>
             </div>
             <div className="modules-path font-mono text-cyan"></div>
@@ -736,32 +887,49 @@ function App() {
               <div className="module-card-body">
                 <h3 className="module-name">Patient Services</h3>
                 <p className="module-desc">
-                  Core service layer managing registrations, wellness tracking, and secure document uploads.
+                  Core service layer managing registrations, wellness tracking,
+                  and secure document uploads.
                 </p>
 
                 <ul className="module-bullets">
                   <li className="module-bullet-item">
-                    <CheckCircle2 size={16} className="bullet-icon text-green" />
+                    <CheckCircle2
+                      size={16}
+                      className="bullet-icon text-green"
+                    />
                     <span className="bullet-text">
-                      Registration, profile management, appointment booking, and wellness logs.
+                      Registration, profile management, appointment booking, and
+                      wellness logs.
                     </span>
                   </li>
                   <li className="module-bullet-item">
-                    <CheckCircle2 size={16} className="bullet-icon text-green" />
+                    <CheckCircle2
+                      size={16}
+                      className="bullet-icon text-green"
+                    />
                     <span className="bullet-text">
-                      Integrated Face Scan AI module for touchless health vitals monitoring.
+                      Integrated Face Scan AI module for touchless health vitals
+                      monitoring.
                     </span>
                   </li>
                   <li className="module-bullet-item">
-                    <CheckCircle2 size={16} className="bullet-icon text-green" />
+                    <CheckCircle2
+                      size={16}
+                      className="bullet-icon text-green"
+                    />
                     <span className="bullet-text">
-                      Secure prescription uploads stored safely in Azure Blob Storage.
+                      Secure prescription uploads stored safely in Azure Blob
+                      Storage.
                     </span>
                   </li>
                   <li className="module-bullet-item">
-                    <CheckCircle2 size={16} className="bullet-icon text-green" />
+                    <CheckCircle2
+                      size={16}
+                      className="bullet-icon text-green"
+                    />
                     <span className="bullet-text">
-                      PhonePe & RazorPay payment gateway integration for packages and consultation fees.
+                      PhonePe & RazorPay payment gateway integration for
+                      packages and consultation fees.
                     </span>
                   </li>
                 </ul>
@@ -779,26 +947,39 @@ function App() {
               <div className="module-card-body">
                 <h3 className="module-name">Doctor Workflows</h3>
                 <p className="module-desc">
-                  Comprehensive digital workspaces for clinical consultations and secure record handling.
+                  Comprehensive digital workspaces for clinical consultations
+                  and secure record handling.
                 </p>
 
                 <ul className="module-bullets">
                   <li className="module-bullet-item">
-                    <CheckCircle2 size={16} className="bullet-icon text-green" />
+                    <CheckCircle2
+                      size={16}
+                      className="bullet-icon text-green"
+                    />
                     <span className="bullet-text">
-                      End-to-end appointment lifecycle management and video consultations.
+                      End-to-end appointment lifecycle management and video
+                      consultations.
                     </span>
                   </li>
                   <li className="module-bullet-item">
-                    <CheckCircle2 size={16} className="bullet-icon text-green" />
+                    <CheckCircle2
+                      size={16}
+                      className="bullet-icon text-green"
+                    />
                     <span className="bullet-text">
-                      Electronic Medical Record (EMR) generation and digital prescriptions.
+                      Electronic Medical Record (EMR) generation and digital
+                      prescriptions.
                     </span>
                   </li>
                   <li className="module-bullet-item">
-                    <CheckCircle2 size={16} className="bullet-icon text-green" />
+                    <CheckCircle2
+                      size={16}
+                      className="bullet-icon text-green"
+                    />
                     <span className="bullet-text">
-                      Secure data access boundaries based on JWT and role-based access control (RBAC).
+                      Secure data access boundaries based on JWT and role-based
+                      access control (RBAC).
                     </span>
                   </li>
                 </ul>
@@ -835,20 +1016,35 @@ function App() {
                 </div>
               </div>
 
-              <div className="module-card-body flex-row" style={{ display: "flex", gap: "1.5rem", height: "calc(100% - 68px)" }}>
+              <div
+                className="module-card-body flex-row"
+                style={{
+                  display: "flex",
+                  gap: "1.5rem",
+                  height: "calc(100% - 68px)",
+                }}
+              >
                 <div className="module-info-left" style={{ flexGrow: 1 }}>
                   <h3 className="module-name">Pharmacy Module</h3>
                   <ul className="module-bullets">
                     <li className="module-bullet-item">
-                      <CheckCircle2 size={16} className="bullet-icon text-green" />
+                      <CheckCircle2
+                        size={16}
+                        className="bullet-icon text-green"
+                      />
                       <span className="bullet-text">
-                        Inventory tracking, real-time medicine search, and billing systems.
+                        Inventory tracking, real-time medicine search, and
+                        billing systems.
                       </span>
                     </li>
                     <li className="module-bullet-item">
-                      <CheckCircle2 size={16} className="bullet-icon text-green" />
+                      <CheckCircle2
+                        size={16}
+                        className="bullet-icon text-green"
+                      />
                       <span className="bullet-text">
-                        Automated low-stock detection and purchase order (PO) generation.
+                        Automated low-stock detection and purchase order (PO)
+                        generation.
                       </span>
                     </li>
                   </ul>
@@ -882,22 +1078,39 @@ function App() {
             <div className="module-card module-card-orange">
               <div className="module-card-header">
                 <div className="module-icon-container">
-                  <FlaskConical size={20} style={{ color: "var(--accent-orange)" }} />
+                  <FlaskConical
+                    size={20}
+                    style={{ color: "var(--accent-orange)" }}
+                  />
                 </div>
               </div>
 
-              <div className="module-card-body flex-row" style={{ display: "flex", gap: "1.5rem", height: "calc(100% - 68px)" }}>
+              <div
+                className="module-card-body flex-row"
+                style={{
+                  display: "flex",
+                  gap: "1.5rem",
+                  height: "calc(100% - 68px)",
+                }}
+              >
                 <div className="module-info-left" style={{ flexGrow: 1 }}>
                   <h3 className="module-name">Lab Management</h3>
                   <ul className="module-bullets">
                     <li className="module-bullet-item">
-                      <CheckCircle2 size={16} className="bullet-icon text-green" />
+                      <CheckCircle2
+                        size={16}
+                        className="bullet-icon text-green"
+                      />
                       <span className="bullet-text">
-                        Test scheduling, technician workflows, and real-time status alerts.
+                        Test scheduling, technician workflows, and real-time
+                        status alerts.
                       </span>
                     </li>
                     <li className="module-bullet-item">
-                      <CheckCircle2 size={16} className="bullet-icon text-green" />
+                      <CheckCircle2
+                        size={16}
+                        className="bullet-icon text-green"
+                      />
                       <span className="bullet-text">
                         Secure PDF report uploads and signed URL downloads.
                       </span>
@@ -930,9 +1143,7 @@ function App() {
           {/* Integration Architecture */}
           <div className="integration-architecture">
             <div className="integration-left">
-              <h2 className="integration-title">
-                Integration Architecture
-              </h2>
+              <h2 className="integration-title">Integration Architecture</h2>
 
               <div className="integration-steps">
                 <div className="integration-step">
@@ -940,7 +1151,8 @@ function App() {
                   <div className="step-content">
                     <h4 className="step-title">Face Scan AI Module</h4>
                     <p className="step-desc">
-                      Integrated Face Scan AI vitals monitoring module for touchless tracking of patient health metrics.
+                      Integrated Face Scan AI vitals monitoring module for
+                      touchless tracking of patient health metrics.
                     </p>
                   </div>
                 </div>
@@ -948,9 +1160,13 @@ function App() {
                 <div className="integration-step">
                   <div className="step-num font-mono text-cyan">02</div>
                   <div className="step-content">
-                    <h4 className="step-title">PhonePe & RazorPay Payment Gateway</h4>
+                    <h4 className="step-title">
+                      PhonePe & RazorPay Payment Gateway
+                    </h4>
                     <p className="step-desc">
-                      Integrated PhonePe & RazorPay payment gateway to facilitate seamless transactions for healthcare packages and consultations.
+                      Integrated PhonePe & RazorPay payment gateway to
+                      facilitate seamless transactions for healthcare packages
+                      and consultations.
                     </p>
                   </div>
                 </div>
@@ -958,9 +1174,13 @@ function App() {
                 <div className="integration-step">
                   <div className="step-num font-mono text-cyan">03</div>
                   <div className="step-content">
-                    <h4 className="step-title">Azure Blob Storage & Secure Downloads</h4>
+                    <h4 className="step-title">
+                      Azure Blob Storage & Secure Downloads
+                    </h4>
                     <p className="step-desc">
-                      Configured secure prescription uploads using Azure Blob Storage and generated secure signed URLs for lab report downloads.
+                      Configured secure prescription uploads using Azure Blob
+                      Storage and generated secure signed URLs for lab report
+                      downloads.
                     </p>
                   </div>
                 </div>
@@ -1276,7 +1496,8 @@ function App() {
                 Secondary School Certificate (SSC)
               </h3>
               <div className="education-school">
-                Sujatha Vidyanikethan High School, Hasanparthy, Hanamkonda, Telangana
+                Sujatha Vidyanikethan High School, Hasanparthy, Hanamkonda,
+                Telangana
               </div>
               <div className="education-meta">
                 <span>TERM: 2004 — 2014</span>
@@ -1317,13 +1538,15 @@ function App() {
               </div>
             </div>
             <div className="contact-method">
-
               <div className="contact-icon-wrap">
                 <Mail size={20} color="var(--accent-cyan)" />
               </div>
               <div className="contact-text">
                 <span className="contact-label">Email</span>
-                <a href="mailto:saikrishna6800@gmail.com" className="contact-value">
+                <a
+                  href="mailto:saikrishna6800@gmail.com"
+                  className="contact-value"
+                >
                   saikrishna6800@gmail.com
                 </a>
               </div>
@@ -1345,8 +1568,6 @@ function App() {
                 </a>
               </div>
             </div>
-
-
           </div>
 
           {/* Contact Form or Transmission Terminal Card */}
@@ -1411,12 +1632,13 @@ function App() {
                   {sendLogs.map((log, index) => (
                     <div
                       key={index}
-                      className={`contact-terminal-line ${log.type === "success"
-                        ? "success-msg"
-                        : log.type === "error"
-                          ? "error-msg"
-                          : ""
-                        }`}
+                      className={`contact-terminal-line ${
+                        log.type === "success"
+                          ? "success-msg"
+                          : log.type === "error"
+                            ? "error-msg"
+                            : ""
+                      }`}
                     >
                       <span className="log-time">[{log.time}]</span>
                       <span>{log.msg}</span>
@@ -1441,12 +1663,17 @@ function App() {
                 </div>
                 {!isSending && sendLogs.length > 0 && (
                   <div className="contact-terminal-footer">
-                    <span style={{
-                      color: sendSuccess ? "var(--accent-green)" : "var(--accent-orange)",
-                      fontSize: "0.75rem",
-                      fontFamily: "var(--font-mono)"
-                    }}>
-                      STATUS: {sendSuccess ? "TRANSMITTED_OK" : "TRANSMISSION_FAILED"}
+                    <span
+                      style={{
+                        color: sendSuccess
+                          ? "var(--accent-green)"
+                          : "var(--accent-orange)",
+                        fontSize: "0.75rem",
+                        fontFamily: "var(--font-mono)",
+                      }}
+                    >
+                      STATUS:{" "}
+                      {sendSuccess ? "TRANSMITTED_OK" : "TRANSMISSION_FAILED"}
                     </span>
                     <button
                       type="button"
@@ -1455,7 +1682,11 @@ function App() {
                         setSendSuccess(false);
                       }}
                       className="btn-submit"
-                      style={{ padding: "0.4rem 0.8rem", fontSize: "0.7rem", marginTop: 0 }}
+                      style={{
+                        padding: "0.4rem 0.8rem",
+                        fontSize: "0.7rem",
+                        marginTop: 0,
+                      }}
                     >
                       Reset Console
                     </button>
@@ -1470,12 +1701,18 @@ function App() {
       {/* Footer */}
       <footer className="footer reveal delay-2">
         <div>
-          <div className="text-cyan mb-2" style={{ fontWeight: 450, fontSize: "20px" }}>
+          <div
+            className="text-cyan mb-2"
+            style={{ fontWeight: 450, fontSize: "20px" }}
+          >
             Sai Krishna Mateti · Backend Engineer · Hyderabad, India
           </div>
           <div style={{ fontSize: "16px" }}>© 2026 All rights reserved.</div>
         </div>
-        <div className="footer-links" style={{ fontSize: "16px", fontWeight: 300, color: "#00e5ff" }}>
+        <div
+          className="footer-links"
+          style={{ fontSize: "16px", fontWeight: 300, color: "#00e5ff" }}
+        >
           <a href="https://www.linkedin.com/in/saikrishna-mateti">LinkedIn</a>
           <a href="https://github.com/saikrishna2917">GitHub</a>
         </div>
