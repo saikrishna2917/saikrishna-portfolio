@@ -149,6 +149,7 @@ export default function Hero() {
               className="btn btn-secondary"
               download
             >
+              ////////
               <span>Download Resume</span>
               <Download size={18} />
             </a>
