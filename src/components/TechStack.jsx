@@ -1,59 +1,72 @@
 import React from "react";
-import { Code, Zap, Server, ShieldCheck, TerminalSquare, Award } from "lucide-react";
+import { Code, Zap, Server, ShieldCheck, TerminalSquare } from "lucide-react";
 
 export default function TechStack() {
   const cardStyle = {
-    padding: '2rem',
+    padding: '2.5rem',
     display: 'flex',
     flexDirection: 'column',
-    gap: '1rem',
+    gap: '1.5rem',
+    backgroundColor: '#fff',
+    border: '3px solid var(--ca-ink)',
+    boxShadow: '6px 6px 0 rgba(17, 18, 18, 1)',
+    position: 'relative'
   };
 
   const iconWrapStyle = {
-    width: '42px',
-    height: '42px',
-    borderRadius: 'var(--radius-md)',
-    backgroundColor: 'rgba(99, 102, 241, 0.1)',
+    width: '48px',
+    height: '48px',
+    border: '3px solid var(--ca-ink)',
+    backgroundColor: 'var(--ca-yellow)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    color: 'var(--accent-primary)',
-    marginBottom: '1rem'
+    color: 'var(--ca-ink)',
+    marginBottom: '0.5rem',
+    boxShadow: '2px 2px 0 var(--ca-ink)',
+    transform: 'rotate(-4deg)'
   };
 
   const titleStyle = {
-    fontSize: '1.25rem',
-    fontWeight: 700,
-    color: 'var(--text-primary)',
-    margin: 0
+    fontFamily: 'var(--font-display)',
+    fontSize: '2rem',
+    color: 'var(--ca-ink)',
+    margin: 0,
+    textTransform: 'uppercase',
+    letterSpacing: '0.02em',
+    lineHeight: 1
   };
 
   const descStyle = {
-    color: 'var(--text-secondary)',
+    fontFamily: 'var(--font-body)',
+    color: 'var(--ca-ink)',
     lineHeight: 1.6,
     margin: 0,
-    fontSize: '0.95rem'
+    fontSize: '1rem',
+    fontWeight: 500
   };
 
   return (
-    <section id="features" className="container reveal">
-      <div className="section-tag animate-fade-up">
-        <Code size={16} />
-        <span>Technical Architecture</span>
+    <section id="features" className="container reveal" style={{ paddingTop: '8rem' }}>
+      <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+        <div className="ca-tape" style={{ transform: 'rotate(-2deg)', marginBottom: '1rem' }}>
+          <Code size={16} style={{ display: 'inline', verticalAlign: 'text-bottom', marginRight: '0.5rem' }} />
+          Technical Architecture
+        </div>
+        <h2 className="section-title">Systems & Optimization</h2>
+        <p className="ca-hand" style={{ fontSize: '2rem', maxWidth: '600px', margin: '0 auto', color: 'var(--ca-ink)', transform: 'rotate(1deg)' }}>
+          Building high-performance, fault-tolerant backends for enterprise and healthcare sectors.
+        </p>
       </div>
-      <h2 className="section-title animate-fade-up delay-1">Systems & Optimization</h2>
-      <p className="section-subtitle animate-fade-up delay-2">
-        Building high-performance, fault-tolerant backends for enterprise and healthcare sectors.
-      </p>
       
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '3rem' }}>
         
         {/* Core Tech Stack */}
-        <div className="glass-card animate-fade-up delay-1" style={{ ...cardStyle, gridColumn: '1 / -1', flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', gap: '3rem' }}>
+        <div className="reveal delay-1" style={{ ...cardStyle, gridColumn: '1 / -1', flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', gap: '3rem', backgroundColor: 'var(--ca-yellow-soft)' }}>
           <div style={{ flex: '1 1 300px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
-              <div style={{ ...iconWrapStyle, marginBottom: 0 }}><Server size={24} /></div>
-              <h3 style={{ ...titleStyle, fontSize: '1.5rem' }}>Core Tech Stack</h3>
+              <div style={{ ...iconWrapStyle, backgroundColor: 'var(--ca-blue)', transform: 'rotate(5deg)' }}><Server size={24} color="#fff" /></div>
+              <h3 style={titleStyle}>Core Tech Stack</h3>
             </div>
             <p style={descStyle}>
               Industrial-grade technologies powering cloud-native healthcare microservices, reliable batch processing, and secure integrations.
@@ -62,41 +75,32 @@ export default function TechStack() {
           
           <div style={{ flex: '2 1 400px', display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
             {[
-              { name: "Node.js", bg: "rgba(34, 197, 94, 0.15)", color: "#22c55e", hoverBg: "rgba(34, 197, 94, 0.25)" },
-              { name: "Express.js", bg: "rgba(156, 163, 175, 0.15)", color: "var(--text-primary)", hoverBg: "rgba(156, 163, 175, 0.25)" },
-              { name: "MongoDB", bg: "rgba(16, 185, 129, 0.15)", color: "#10b981", hoverBg: "rgba(16, 185, 129, 0.25)" },
-              { name: "Redis", bg: "rgba(239, 68, 68, 0.15)", color: "#ef4444", hoverBg: "rgba(239, 68, 68, 0.25)" },
-              { name: "Docker", bg: "rgba(59, 130, 246, 0.15)", color: "#3b82f6", hoverBg: "rgba(59, 130, 246, 0.25)" },
-              { name: "Jenkins", bg: "rgba(220, 38, 38, 0.15)", color: "#ef4444", hoverBg: "rgba(220, 38, 38, 0.25)" },
-              { name: "Elastic Search", bg: "rgba(20, 184, 166, 0.15)", color: "#14b8a6", hoverBg: "rgba(20, 184, 166, 0.25)" },
-              { name: "JavaScript", bg: "rgba(234, 179, 8, 0.15)", color: "#eab308", hoverBg: "rgba(234, 179, 8, 0.25)" },
-              { name: "Azure Cloud", bg: "rgba(14, 165, 233, 0.15)", color: "#0ea5e9", hoverBg: "rgba(14, 165, 233, 0.25)" },
-              { name: "React.js", bg: "rgba(56, 189, 248, 0.15)", color: "#38bdf8", hoverBg: "rgba(56, 189, 248, 0.25)" }
+              { name: "Node.js", bg: "var(--ca-green)" },
+              { name: "Express.js", bg: "var(--ca-chrome)" },
+              { name: "MongoDB", bg: "var(--ca-mint)" },
+              { name: "Redis", bg: "var(--ca-magenta)" },
+              { name: "Docker", bg: "var(--ca-blue)" },
+              { name: "Jenkins", bg: "var(--ca-orange)" },
+              { name: "Elastic Search", bg: "var(--ca-cyan)" },
+              { name: "JavaScript", bg: "var(--ca-yellow)" },
+              { name: "Azure Cloud", bg: "var(--ca-blue)" },
+              { name: "React.js", bg: "var(--ca-cyan)" }
             ].map((tech, i) => (
               <span 
                 key={tech.name} 
-                className={`animate-fade-up delay-${i % 5 + 1}`} 
+                className={`reveal delay-${i % 5 + 1} ca-mono`} 
                 style={{ 
                   padding: '0.5rem 1.25rem', 
                   backgroundColor: tech.bg, 
-                  border: '1px solid',
-                  borderColor: tech.color,
-                  borderRadius: 'var(--radius-full)', 
+                  border: '2px solid var(--ca-ink)',
                   fontSize: '0.9rem', 
-                  fontWeight: 600, 
-                  color: tech.color,
-                  transition: 'all var(--transition-fast)',
-                  cursor: 'default'
-                }}
-                onMouseOver={(e) => {
-                  e.currentTarget.style.backgroundColor = tech.hoverBg;
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = `0 4px 12px ${tech.bg}`;
-                }}
-                onMouseOut={(e) => {
-                  e.currentTarget.style.backgroundColor = tech.bg;
-                  e.currentTarget.style.transform = 'none';
-                  e.currentTarget.style.boxShadow = 'none';
+                  fontWeight: 700, 
+                  textTransform: 'uppercase',
+                  color: tech.bg === 'var(--ca-magenta)' || tech.bg === 'var(--ca-blue)' ? '#fff' : 'var(--ca-ink)',
+                  boxShadow: '2px 2px 0 var(--ca-ink)',
+                  transform: `rotate(${i % 2 === 0 ? '-2deg' : '2deg'})`,
+                  cursor: 'default',
+                  display: 'inline-block'
                 }}
               >
                 {tech.name}
@@ -106,38 +110,41 @@ export default function TechStack() {
         </div>
 
         {/* API Optimization */}
-        <div className="glass-card animate-fade-up delay-2" style={cardStyle}>
-          <div style={iconWrapStyle}><Zap size={20} /></div>
+        <div className="reveal delay-2" style={{ ...cardStyle, transform: 'rotate(-1deg)' }}>
+          <div style={{ ...iconWrapStyle, backgroundColor: 'var(--ca-yellow)' }}><Zap size={24} /></div>
           <h3 style={titleStyle}>API Optimization</h3>
           <p style={descStyle}>
             Improved average API response time using Redis caching, query optimization, and compound database indexing.
           </p>
-          <div style={{ marginTop: 'auto', paddingTop: '1.5rem' }}>
-            <div style={{ fontSize: '2.5rem', fontWeight: 900, color: 'var(--text-primary)', lineHeight: 1 }} className="gradient-text">~50%</div>
-            <div style={{ fontSize: '0.8rem', fontWeight: 600, letterSpacing: '0.05em', color: 'var(--text-secondary)', marginTop: '0.5rem', textTransform: 'uppercase' }}>Faster Response Times</div>
+          <div style={{ marginTop: 'auto', paddingTop: '1.5rem', display: 'flex', alignItems: 'flex-end', gap: '1rem' }}>
+            <div className="ca-display" style={{ fontSize: '4rem', color: 'var(--ca-magenta)', lineHeight: 0.8 }}>~50%</div>
+            <div className="ca-hand" style={{ fontSize: '1.5rem', fontWeight: 600, color: 'var(--ca-ink)', marginBottom: '-0.2rem' }}>Faster Responses</div>
           </div>
         </div>
 
         {/* Environment Parity */}
-        <div className="glass-card animate-fade-up delay-3" style={cardStyle}>
-          <div style={{ ...iconWrapStyle, backgroundColor: 'rgba(16, 185, 129, 0.1)', color: 'var(--accent-emerald)' }}><ShieldCheck size={20} /></div>
+        <div className="reveal delay-3" style={{ ...cardStyle, transform: 'rotate(1deg)' }}>
+          <div style={{ ...iconWrapStyle, backgroundColor: 'var(--ca-green)' }}><ShieldCheck size={24} /></div>
           <h3 style={titleStyle}>Environment Parity</h3>
           <p style={descStyle}>
             Standardized deployment workflows by containerizing microservices with Docker, eliminating environment-related issues.
           </p>
-          <div style={{ marginTop: 'auto', paddingTop: '1.5rem' }}>
-            <div style={{ fontSize: '2.5rem', fontWeight: 900, color: 'var(--accent-emerald)', lineHeight: 1 }}>99.9%</div>
-            <div style={{ fontSize: '0.8rem', fontWeight: 600, letterSpacing: '0.05em', color: 'var(--text-secondary)', marginTop: '0.5rem', textTransform: 'uppercase' }}>Parity Across Stages</div>
+          <div style={{ marginTop: 'auto', paddingTop: '1.5rem', display: 'flex', alignItems: 'flex-end', gap: '1rem' }}>
+            <div className="ca-display" style={{ fontSize: '4rem', color: 'var(--ca-blue)', lineHeight: 0.8 }}>99.9%</div>
+            <div className="ca-hand" style={{ fontSize: '1.5rem', fontWeight: 600, color: 'var(--ca-ink)', marginBottom: '-0.2rem' }}>Parity Across Stages</div>
           </div>
         </div>
 
         {/* Security */}
-        <div className="glass-card animate-fade-up delay-4" style={cardStyle}>
-          <div style={{ ...iconWrapStyle, backgroundColor: 'rgba(6, 182, 212, 0.1)', color: 'var(--accent-cyan)' }}><TerminalSquare size={20} /></div>
+        <div className="reveal delay-4" style={{ ...cardStyle, transform: 'rotate(-1.5deg)' }}>
+          <div style={{ ...iconWrapStyle, backgroundColor: 'var(--ca-cyan)' }}><TerminalSquare size={24} /></div>
           <h3 style={titleStyle}>Security & Boundaries</h3>
           <p style={descStyle}>
             Implemented stateless JWT/OAuth2 authentication, strict role-based access control (RBAC), and hard data boundaries to secure patient and doctor medical records.
           </p>
+          <div style={{ position: 'absolute', right: '-15px', bottom: '-20px', fontSize: '3rem', transform: 'rotate(-15deg)' }}>
+            🔒
+          </div>
         </div>
       </div>
     </section>
